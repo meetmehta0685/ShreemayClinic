@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import InstagramReels from '../components/InstagramReels';
+import AnnouncementBar from '../components/AnnouncementBar';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -76,7 +77,8 @@ export default function Home() {
       </nav>
       {menuOpen && <div className="mobile-nav-overlay" onClick={() => setMenuOpen(false)} />}
 
-
+      {/* Announcement Marquee Bar */}
+      <AnnouncementBar />
 
       <main id="top">
         <section className="hero">
