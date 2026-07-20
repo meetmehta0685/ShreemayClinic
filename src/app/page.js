@@ -113,8 +113,10 @@ export default function Home() {
 
         <section id="services" className="services">
           <div className="wrap">
-            <h2 className="center">Services</h2>
-
+            <div className="services-header">
+              <h2 className="center">Skin, Hair &amp; Laser Treatments</h2>
+              <p className="services-sub center">Personalized, evidence-based treatments for healthy skin, hair, and confidence.</p>
+            </div>
 
             <div className="service-groups">
               <div className="service-group">
