@@ -234,6 +234,242 @@ p{margin:0 0 1em;color:var(--ink-soft);line-height:1.6;}
   box-shadow:var(--shadow);
 }
 
+/* Learn From Our Experts - Instagram Reels Section */
+.reels-section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.reels-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+
+.reels-header h2 {
+  font-size: 2.2rem;
+  color: var(--teal-deep);
+  margin-bottom: 12px;
+}
+
+.reels-header p {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Carousel Container & Controls */
+.reels-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.reels-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 12px 4px 24px;
+}
+
+.reels-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.reel-card {
+  flex: 0 0 calc(25% - 15px);
+  min-width: 260px;
+  scroll-snap-align: start;
+  border-radius: var(--radius);
+  background: var(--white);
+  border: 1px solid rgba(32, 80, 76, 0.12);
+  overflow: hidden;
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 30px -15px rgba(32, 80, 76, 0.15);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.reel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: rgba(32, 80, 76, 0.25);
+}
+
+.reel-embed-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Skeleton Placeholder */
+.reel-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  border-radius: var(--radius);
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.reel-skeleton.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.skeleton-shimmer {
+  animation: skeletonPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes skeletonPulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.skeleton-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cream-2);
+}
+
+.skeleton-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skeleton-line {
+  height: 10px;
+  border-radius: 4px;
+  background: var(--cream-2);
+}
+
+.skeleton-line.short { width: 60%; }
+.skeleton-line.tiny { width: 35%; }
+
+.skeleton-media {
+  flex: 1;
+  min-height: 340px;
+  border-radius: 10px;
+  background: var(--cream-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeleton-instagram-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--teal-soft);
+  opacity: 0.6;
+}
+
+.skeleton-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* Nav Arrows */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--teal-deep);
+  border: 1px solid rgba(32, 80, 76, 0.15);
+  box-shadow: 0 4px 14px rgba(32, 80, 76, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-arrow:hover:not(:disabled) {
+  background: var(--teal-deep);
+  color: var(--white);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.nav-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.nav-arrow.left { left: -16px; }
+.nav-arrow.right { right: -16px; }
+
+/* View More Button Container */
+.reels-cta-wrapper {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.instagram-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 1023px) {
+  .reel-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+  .nav-arrow.left { left: 4px; }
+  .nav-arrow.right { right: 4px; }
+}
+
+@media (max-width: 639px) {
+  .reels-section {
+    padding: 60px 0;
+  }
+  .reels-header h2 {
+    font-size: 1.8rem;
+  }
+  .reel-card {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+  }
+  .nav-arrow {
+    display: none;
+  }
+}
+
 /* Reviews */
 .reviews{background:var(--cream-2);padding:80px 0;position:relative;z-index:1;}
 .reviews h2{font-size:2.2rem;color:var(--teal-deep);margin-bottom:48px;}

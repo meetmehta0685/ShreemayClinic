@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import InstagramReels from '../components/InstagramReels';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -165,6 +166,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Learn From Our Experts - Instagram Reels Section */}
+        <InstagramReels />
 
         <section id="reviews" className="reviews">
           <div className="wrap">
