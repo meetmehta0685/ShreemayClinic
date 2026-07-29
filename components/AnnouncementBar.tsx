@@ -20,7 +20,6 @@ export default function AnnouncementBar() {
       aria-label="Clinic Announcements"
     >
       <div className="marquee-track">
-        {/* First Content Block */}
         <div className="marquee-content">
           {marqueeItems.map((item, index) => (
             <React.Fragment key={`first-${index}`}>
@@ -30,7 +29,6 @@ export default function AnnouncementBar() {
           ))}
         </div>
 
-        {/* Second Identical Content Block for Seamless Infinite Loop */}
         <div className="marquee-content" aria-hidden="true">
           {marqueeItems.map((item, index) => (
             <React.Fragment key={`second-${index}`}>
