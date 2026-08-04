@@ -1,1 +1,1 @@
-export { default } from '../../components/SiteHeader';
+export { default } from './site-header';

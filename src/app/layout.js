@@ -111,10 +111,20 @@ const structuredData = {
   ],
 };
 
+const directionContract = `<!--
+THESIS: Make the consultation feel like a clear clinical record, not a generic clinic landing page.
+OWN-WORLD: Ink, celadon, saffron, and paper tokens; shadcn Base UI primitives; register-like labels, separators, and image-led records.
+STORY: Visitors identify their concern, understand doctor-led care, trust the evidence, and book or message the clinic.
+FIRST VIEWPORT: Sticky wordmark and action rail, concise hero headline and booking action on the left, doctor record card with real imagery on the right.
+FORM: Apothecary register, grounded direction 3 of 7, seed b2b4d75f.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+-->`;
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en-IN" className={`${fraunces.variable} ${publicSans.variable}`}>
       <body>
+        <div hidden aria-hidden="true" dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}
         <script
           type="application/ld+json"

@@ -1,1 +1,1 @@
-export { default } from '../../components/InstagramReels';
+export { default } from './instagram-reels';
