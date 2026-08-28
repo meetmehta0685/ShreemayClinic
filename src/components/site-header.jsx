@@ -17,10 +17,10 @@ import {
 } from "@/components/ui/sheet";
 
 const navigation = [
-  { label: "Care index", href: "#care" },
+  { label: "Treatments", href: "#care" },
   { label: "Doctor", href: "#doctor" },
   { label: "The clinic", href: "#clinic" },
-  { label: "Patient notes", href: "#reviews" },
+  { label: "Patient stories", href: "#reviews" },
   { label: "Visit", href: "#visit" },
 ];
 

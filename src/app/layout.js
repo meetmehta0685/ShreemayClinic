@@ -1,14 +1,14 @@
-import { Fraunces, Public_Sans } from "next/font/google";
+import { Alegreya, Manrope } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const alegreya = Alegreya({
+  variable: "--font-alegreya",
   subsets: ["latin"],
   display: "swap",
 });
 
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
@@ -112,17 +112,17 @@ const structuredData = {
 };
 
 const directionContract = `<!--
-THESIS: Make the consultation feel like a clear clinical record, not a generic clinic landing page.
-OWN-WORLD: Ink, celadon, saffron, and paper tokens; shadcn Base UI primitives; register-like labels, separators, and image-led records.
-STORY: Visitors identify their concern, understand doctor-led care, trust the evidence, and book or message the clinic.
-FIRST VIEWPORT: Sticky wordmark and action rail, concise hero headline and booking action on the left, doctor record card with real imagery on the right.
-FORM: Apothecary register, grounded direction 3 of 7, seed b2b4d75f.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+THESIS: A premium clinic can feel personal without softening its medical credibility.
+OWN-WORLD: Aubergine, mineral white, coral, and eucalyptus; confident typography; real doctor and clinic photography; direct care pathways.
+STORY: A visitor meets the doctor, finds the right concern, understands the consultation, and books with confidence.
+FIRST VIEWPORT: A dark, concise care promise beside a large real portrait, followed by proof and immediate booking choices.
+FORM: A polished private-practice reception, calm in daylight and easy to use on a phone.
+FINISH: responsive, accessible, and verified across the homepage and treatment routes.
 -->`;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-IN" className={`${fraunces.variable} ${publicSans.variable}`}>
+    <html lang="en-IN" className={`${alegreya.variable} ${manrope.variable}`}>
       <body>
         <div hidden aria-hidden="true" dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}
