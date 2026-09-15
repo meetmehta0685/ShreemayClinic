@@ -12,6 +12,7 @@ colors:
   footer: "oklch(0.2 0.065 343)"
   whatsapp: "oklch(0.55 0.137 153)"
   whatsapp-hover: "oklch(0.47 0.12 153)"
+  overlay: "oklch(0.14 0.05 343 / 0.42)"
   border: "oklch(0.86 0.018 342)"
 typography:
   display: "Alegreya 600"
@@ -79,3 +80,15 @@ Motion is restrained. The hero rises into place, images use a clipped reveal, an
 - Do not introduce horizontal scrolling at 320px or wider.
 - Keep meaningful alt text on doctor and clinic photographs.
 - Do not promise outcomes, prices, or availability.
+
+## Client reference pass
+
+References supplied by the client: https://www.naikfoods.co.in/in, https://drnavinskin.com/, and https://www.priyaskinclinic.com/.
+
+The clinic references support the doctor profile, treatment category navigation, clinic gallery, and direct appointment/contact flow. Shreemay retains its own brand and photography.
+
+The Instagram section follows Naik Foods' portrait video tiles, 16px corners, desktop row, mobile swipe navigation, and Instagram destinations. It sits after the doctor profile and shows the four client-provided clinic reels without duplicating content to fill the row.
+
+Naik Foods serves muted looping Vimeo videos. Shreemay currently uses real Instagram embeds. To enable seamless video previews, add clinic-owned MP4/WebM URLs to `videoSrc` and optional cover images to `poster` in `data/instagramReels.ts`. Native previews pause offscreen, in hidden tabs, and for reduced motion; the section offers a pause control. Failed video sources fall back to the corresponding Instagram embed. Instagram embeds retain their own playback controls and platform restrictions.
+
+Validation: production build and ESLint pass; both real Instagram embeds loaded in the browser; 390px mobile viewport had no page overflow; next-reel navigation scrolled to the second reel; mobile navigation opened correctly.

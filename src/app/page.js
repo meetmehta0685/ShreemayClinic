@@ -15,19 +15,24 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import AnnouncementBar from "@/components/AnnouncementBar";
+import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import InstagramReels from "@/components/InstagramReels";
 import MotionReveal from "@/components/motion-reveal";
 import SiteHeader from "@/components/SiteHeader";
-import { treatments } from "@/data/treatments";
-
-const bookingUrl = "https://booking.appointy.com/en-US/hite123/bookings/calendar";
-const phoneHref = "tel:+917861951664";
-const whatsAppHref =
-  "https://wa.me/917861951664?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment%20at%20Shreemay%20Skin%20Clinic";
-const googleMapsHref = "https://share.google/de3czsbRXeYyanmER";
-const instagramHref = "https://www.instagram.com/dr_hiteshreeshah_mddermat/";
+import {
+  bookingUrl,
+  clinicAddress,
+  clinicHours,
+  clinicName,
+  googleMapsHref,
+  instagramHref,
+  mapEmbedUrl,
+  phoneDisplay,
+  phoneHref,
+  whatsAppHref,
+} from "@/data/clinic";
+import { caseStudies } from "@/data/case-studies";
+import { serviceGroups } from "@/data/treatments";
 
 const reviews = [
   {
@@ -60,17 +65,13 @@ export default function Home() {
   return (
     <>
       <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
-      <AnnouncementBar />
 
       <main id="top" tabIndex="-1">
         <section className="hero-section" aria-labelledby="hero-heading">
           <div className="hero-shell">
             <MotionReveal className="hero-copy" preset="rise">
-              <div className="hero-kicker">
-                <span className="hero-kicker-dot" aria-hidden="true" />
-                Dermatologist in Vadodara
-              </div>
-              <h1 id="hero-heading">Care for your skin. Confidence in your plan.</h1>
+              <p className="hero-location">Shreemay Skin Clinic · Vadodara</p>
+              <h1 id="hero-heading">Your skin. Your story. Our care.</h1>
               <p className="hero-lede">
                 Meet Dr. Hiteshree Shah for thoughtful, doctor-led care across skin, hair, laser, cosmetic, and vitiligo concerns.
               </p>
@@ -97,7 +98,7 @@ export default function Home() {
               </div>
               <div className="hero-assurance">
                 <ShieldCheckIcon aria-hidden="true" />
-                <span>Consultation first. Clear options. No one-size-fits-all packages.</span>
+                <span>MBBS, MD Dermatology · Care led by Dr. Hiteshree Shah</span>
               </div>
             </MotionReveal>
 
@@ -115,52 +116,61 @@ export default function Home() {
                   <strong>Dr. Hiteshree Shah</strong>
                   <span>MBBS, MD Dermatology</span>
                 </div>
-                <Badge variant="secondary">Now booking</Badge>
+                  <Badge variant="secondary">Book a consultation</Badge>
               </div>
             </MotionReveal>
-          </div>
-
-          <div className="hero-proof page-container" aria-label="Clinic proof points">
-            <div className="hero-rating">
-              <StarIcon aria-hidden="true" />
-              <strong>4.9</strong>
-              <span>Google rating from 390+ patient reviews</span>
-            </div>
-            <Separator orientation="vertical" />
-            <div>
-              <strong>MD Dermatology</strong>
-              <span>Doctor-led assessment and treatment planning</span>
-            </div>
-            <Separator orientation="vertical" />
-            <div>
-              <strong>Akshar Chowk</strong>
-              <span>Old Padra Road, Vadodara</span>
-            </div>
           </div>
         </section>
 
         <section id="care" className="care-section" aria-labelledby="care-heading">
-          <div className="page-container care-intro">
+          <div className="page-container care-intro care-intro-centered">
             <MotionReveal className="section-heading" amount={0.2}>
-              <p className="section-note">What brings you here?</p>
-              <h2 id="care-heading">Start with the concern you want to understand.</h2>
+              <p className="section-note">What we can help with</p>
+              <h2 id="care-heading">What brings you to Shreemay?</h2>
+              <p className="care-intro-copy">
+                Start with a dermatologist consultation, then choose the right next step for your skin, hair, or treatment goal.
+              </p>
             </MotionReveal>
-            <p className="care-intro-copy">
-              Every path begins with a dermatologist consultation. Explore the concern now, then book the right conversation with the clinic.
-            </p>
           </div>
 
-          <div className="page-container care-list" role="list">
-            {treatments.map((treatment, index) => (
-              <MotionReveal key={treatment.slug} className="care-row-motion" delay={index * 0.035} amount={0.12}>
-                <Link href={`/treatments/${treatment.slug}`} className="care-row" role="listitem">
-                  <span className="care-row-category">{treatment.category}</span>
-                  <span className="care-row-title">{treatment.shortTitle}</span>
-                  <span className="care-row-description">{treatment.description}</span>
-                  <span className="care-row-arrow" aria-hidden="true">
-                    <ArrowUpRightIcon />
-                  </span>
-                </Link>
+          <div className="page-container care-grid" role="list">
+            {serviceGroups.map((group, groupIndex) => (
+              <MotionReveal
+                key={group.slug}
+                className="care-group-motion"
+                delay={groupIndex * 0.05}
+                amount={0.12}
+                role="listitem"
+              >
+                <article className="care-group">
+                  <div className="care-group-heading">
+                    <h3>{group.eyebrow}</h3>
+                    <p>{group.description}</p>
+                  </div>
+
+                  <Link
+                    href={`/care/${group.slug}`}
+                    className="care-feature"
+                    aria-label={`Explore ${group.title} treatments`}
+                  >
+                    <div className="care-feature-media">
+                      <Image
+                        src={group.image}
+                        alt={group.imageAlt}
+                        width={720}
+                        height={440}
+                        sizes="(max-width: 760px) 92vw, (max-width: 1023px) 44vw, 22vw"
+                      />
+                    </div>
+                    <div className="care-feature-copy">
+                      <span>Explore</span>
+                      <strong>{group.title}</strong>
+                      <span className="care-feature-arrow" aria-hidden="true">
+                        <ArrowUpRightIcon />
+                      </span>
+                    </div>
+                  </Link>
+                </article>
               </MotionReveal>
             ))}
           </div>
@@ -174,14 +184,16 @@ export default function Home() {
           </div>
         </section>
 
+        <BeforeAfterGallery caseStudies={caseStudies} />
+
         <section id="doctor" className="doctor-section" aria-labelledby="doctor-heading">
           <div className="page-container doctor-grid">
             <MotionReveal className="doctor-portrait" preset="clip" amount={0.12}>
               <Image
-                src="/images/doctor-hero.png"
-                alt="Dr. Hiteshree Shah inside her dermatology clinic"
-                width={454}
-                height={394}
+                src="/images/dr-hiteshree-iadvl-optimized.jpg"
+                alt="Dr. Hiteshree Shah, dermatologist at Shreemay Skin Clinic"
+                width={1000}
+                height={936}
                 sizes="(max-width: 900px) 100vw, 44vw"
               />
               <div className="doctor-portrait-caption">
@@ -192,19 +204,46 @@ export default function Home() {
 
             <MotionReveal className="doctor-copy" delay={0.08} amount={0.14}>
               <p className="section-note">Meet your dermatologist</p>
-              <h2 id="doctor-heading">Medical clarity, with a more human consultation.</h2>
+              <h2 id="doctor-heading">Meet Dr. Hiteshree Shah.</h2>
               <p className="doctor-lede">
-                Dr. Hiteshree Shah is an MBBS, MD dermatologist with a fellowship in dermatosurgery. She cares for skin, hair, nails, vitiligo, laser, and cosmetic concerns.
+                Dr. Hiteshree Shah is an MBBS, MD dermatologist focused on skin, hair, nails, vitiligo, laser, cosmetic, and dermatosurgical concerns.
               </p>
               <p>
-                The clinic keeps the conversation practical. You understand what may be happening, which options suit you, and what follow-up may involve before treatment starts.
+                Her training includes dermatology at B.J. Medical College, Ahmedabad, clinical experience in Ahmedabad and Vadodara, and observership in dermatosurgery. The clinic keeps the conversation practical so you understand the options and follow-up before treatment starts.
               </p>
 
               <dl className="credentials-list">
                 <div><dt>Qualification</dt><dd>MBBS, MD in Skin &amp; Venereal Disease</dd></div>
                 <div><dt>Training</dt><dd>B.J. Medical College, Ahmedabad</dd></div>
-                <div><dt>Advanced focus</dt><dd>Fellowship in Dermatosurgery</dd></div>
+                <div><dt>Advanced focus</dt><dd>Observership in Dermatosurgery</dd></div>
               </dl>
+
+              <div className="doctor-evidence" aria-label="Doctor education and experience">
+                <div>
+                  <h3>Education</h3>
+                  <ul>
+                    <li>MBBS, Government Medical College, Surat</li>
+                    <li>MD Skin, B.J. Medical College, Ahmedabad</li>
+                    <li>NEET PG 2017: Gujarat Rank 10</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3>Experience</h3>
+                  <ul>
+                    <li>Junior Resident, B.J. Medical College, Ahmedabad</li>
+                    <li>Senior Resident, B.J. Medical College, Ahmedabad</li>
+                    <li>Senior Resident, GMERS Gotri Medical College, Vadodara</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3>Research &amp; memberships</h3>
+                  <ul>
+                    <li>Co-author of an IADVL book chapter on immuno-modulators</li>
+                    <li>Member of ACSI and IADVL</li>
+                    <li>Seminars and observerships in vitiligo surgery, hair transplantation, and acne-scar surgery</li>
+                  </ul>
+                </div>
+              </div>
 
               <div className="doctor-actions">
                 <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
@@ -219,6 +258,8 @@ export default function Home() {
             </MotionReveal>
           </div>
         </section>
+
+        <InstagramReels />
 
         <section className="process-section" aria-labelledby="process-heading">
           <div className="page-container process-layout">
@@ -242,7 +283,7 @@ export default function Home() {
           <div className="page-container clinic-heading-row">
             <div className="section-heading">
               <p className="section-note">The clinic</p>
-              <h2 id="clinic-heading">A familiar, comfortable place to talk about your care.</h2>
+              <h2 id="clinic-heading">Take a look around the clinic.</h2>
             </div>
             <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "outline", size: "lg" })}>
               <MapPinIcon data-icon="inline-start" />
@@ -274,7 +315,7 @@ export default function Home() {
               <div className="reviews-rating">
                 <StarIcon aria-hidden="true" />
                 <strong>4.9 on Google</strong>
-                <span>390+ reviews</span>
+                <span>Read the clinic listing for current review details</span>
               </div>
               <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}>
                 Read more reviews
@@ -288,7 +329,7 @@ export default function Home() {
                   <blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
                   <div className="review-author">
                     <Avatar><AvatarFallback>{review.initials}</AvatarFallback></Avatar>
-                    <div><strong>{review.name}</strong><span>Google review</span></div>
+                    <div><strong>{review.name}</strong><span>Patient feedback</span></div>
                   </div>
                 </MotionReveal>
               ))}
@@ -296,13 +337,12 @@ export default function Home() {
           </div>
         </section>
 
-        <InstagramReels />
 
         <section id="visit" className="visit-section" aria-labelledby="visit-heading">
           <div className="page-container visit-layout">
             <div className="visit-copy">
               <p className="section-note">Visit Shreemay</p>
-              <h2 id="visit-heading">Your next step can take less than a minute.</h2>
+              <h2 id="visit-heading">Let’s make time for your skin.</h2>
               <p>Choose a time online, send a WhatsApp message, or call the clinic. We are near Akshar Chowk on Old Padra Road.</p>
 
               <div className="visit-actions">
@@ -318,13 +358,14 @@ export default function Home() {
               </div>
 
               <div className="visit-meta">
-                <div><Clock3Icon aria-hidden="true" /><span>Monday to Saturday</span><strong>10 AM to 2 PM · 5 PM to 8 PM</strong></div>
-                <div><MapPinIcon aria-hidden="true" /><span>Shreemay Skin Clinic</span><strong>Shop 8, Ananya Complex, Tandalja, Vadodara 390012</strong></div>
+                <div><Clock3Icon aria-hidden="true" /><span>{clinicHours[0].days}</span><strong>{clinicHours[0].hours}</strong></div>
+                <div><Clock3Icon aria-hidden="true" /><span>{clinicHours[1].days}</span><strong>{clinicHours[1].hours}</strong></div>
+                <div><MapPinIcon aria-hidden="true" /><span>{clinicName}</span><strong>{clinicAddress}</strong></div>
               </div>
             </div>
 
             <MotionReveal className="map-frame" preset="clip" delay={0.08} amount={0.1}>
-              <iframe title="Shreemay Skin Clinic location map" src="https://www.google.com/maps?q=Shreemay+Clinic+Vadodara&output=embed" loading="lazy" allowFullScreen />
+              <iframe title="Shreemay Skin Clinic location map" src={mapEmbedUrl} loading="lazy" allowFullScreen />
               <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className="map-link">
                 <MapPinIcon aria-hidden="true" />Open in Google Maps<ArrowUpRightIcon aria-hidden="true" />
               </a>
@@ -337,11 +378,11 @@ export default function Home() {
         <div className="page-container footer-main">
           <div className="footer-brand">
             <Image src="/images/logo.png" alt="Shreemay Skin Clinic logo" width={72} height={72} />
-            <div><p className="footer-brand-name">Shreemay Skin Clinic</p><p>Skin, hair, laser, cosmetic, and vitiligo care by Dr. Hiteshree Shah in Vadodara.</p></div>
+            <div><p className="footer-brand-name">{clinicName}</p><p>Skin, hair, laser, cosmetic, and vitiligo care by Dr. Hiteshree Shah in Vadodara.</p></div>
           </div>
           <div className="footer-links">
             <div><span className="footer-label">Explore</span><a href="#care">Treatments</a><a href="#doctor">Dr. Hiteshree Shah</a><a href="#clinic">The clinic</a></div>
-            <div><span className="footer-label">Contact</span><a href={phoneHref}>78619 51664</a><a href={whatsAppHref} target="_blank" rel="noopener noreferrer">WhatsApp</a><a href={instagramHref} target="_blank" rel="noopener noreferrer">Instagram</a></div>
+            <div><span className="footer-label">Contact</span><a href={phoneHref}>{phoneDisplay}</a><a href={whatsAppHref} target="_blank" rel="noopener noreferrer">WhatsApp</a><a href={instagramHref} target="_blank" rel="noopener noreferrer">Instagram</a><address>{clinicAddress}</address></div>
           </div>
         </div>
         <div className="page-container footer-bottom">

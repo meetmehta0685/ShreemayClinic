@@ -106,7 +106,7 @@ export default function SiteHeader({ bookingUrl, phoneHref }) {
             <a
               key={item.href}
               href={item.href}
-              aria-current={isHome && activeSection === item.href ? "page" : undefined}
+              aria-current={isHome && activeSection === item.href ? "location" : undefined}
             >
               {item.label}
             </a>

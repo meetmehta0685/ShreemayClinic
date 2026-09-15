@@ -15,6 +15,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import {
   Card,
   CardAction,
@@ -24,16 +25,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import MotionReveal from "@/components/motion-reveal";
 import SiteHeader from "@/components/SiteHeader";
+import {
+  bookingUrl,
+  clinicAddress,
+  clinicName,
+  doctorName,
+  googleMapsHref,
+  phoneDisplay,
+  phoneHref,
+  whatsAppHref,
+} from "@/data/clinic";
+import { getCaseStudiesForTreatment } from "@/data/case-studies";
 import { getTreatment, treatments } from "@/data/treatments";
-
-const bookingUrl = "https://booking.appointy.com/en-US/hite123/bookings/calendar";
-const phoneHref = "tel:+917861951664";
-const whatsAppHref =
-  "https://wa.me/917861951664?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment%20at%20Shreemay%20Skin%20Clinic";
 
 export function generateStaticParams() {
   return treatments.map((treatment) => ({ slug: treatment.slug }));
@@ -49,11 +54,14 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${treatment.title} | Shreemay Skin Clinic`,
-    description: `${treatment.description} Consult Dr. Hiteshree Shah at Shreemay Skin Clinic, Akshar Chowk, Vadodara.`,
+    description: `${treatment.metaDescription} Consult Dr. Hiteshree Shah at Shreemay Skin Clinic, Akshar Chowk, Vadodara.`,
+    alternates: {
+      canonical: `/treatments/${treatment.slug}`,
+    },
     openGraph: {
       title: `${treatment.title} | Shreemay Skin Clinic`,
-      description: treatment.description,
-      images: [{ url: treatment.image, alt: treatment.title }],
+      description: treatment.metaDescription,
+      images: [{ url: treatment.image, alt: treatment.imageAlt }],
     },
   };
 }
@@ -69,7 +77,6 @@ export default async function TreatmentPage({ params }) {
   return (
     <>
       <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
-      <AnnouncementBar />
 
       <main id="top" className="treatment-page" tabIndex="-1">
         <section className="treatment-hero" aria-labelledby="treatment-heading">
@@ -117,28 +124,28 @@ export default async function TreatmentPage({ params }) {
               <CardHeader>
                 <div>
                   <CardTitle>{treatment.shortTitle}</CardTitle>
-                  <CardDescription>A focused conversation about your concern.</CardDescription>
+                  <CardDescription>A treatment-focused visual for a doctor-led consultation.</CardDescription>
                 </div>
                 <CardAction>
-                  <Badge variant="outline">Care record</Badge>
+                  <Badge variant="outline">Treatment focus</Badge>
                 </CardAction>
               </CardHeader>
               <CardContent className="treatment-visual-media">
                 <Image
                   src={treatment.image}
-                  alt={treatment.title}
+                  alt={treatment.imageAlt}
                   width={720}
                   height={720}
                   priority
                   sizes="(max-width: 1023px) 92vw, 43vw"
                 />
                 <div className="treatment-image-caption">
-                  <span>Consultation focus</span>
-                  <strong>{treatment.category} care</strong>
+                  <span>{treatment.group}</span>
+                  <strong>{treatment.imageLabel}</strong>
                 </div>
               </CardContent>
               <CardFooter>
-                <span>Dr. Hiteshree Shah · MD Dermatology</span>
+                <span>{doctorName} · MD Dermatology</span>
               </CardFooter>
               </Card>
             </MotionReveal>
@@ -148,17 +155,15 @@ export default async function TreatmentPage({ params }) {
         <section className="treatment-detail-section" aria-labelledby="detail-heading">
           <div className="page-container treatment-detail-grid">
             <MotionReveal className="treatment-detail-copy" amount={0.16}>
-              <h2 id="detail-heading">A care plan built around the consultation.</h2>
-              <p>
-                Every treatment starts with a dermatologist consultation so the plan matches your skin type, medical history, symptoms, expectations, and follow-up needs.
-              </p>
+              <h2 id="detail-heading">Start with a consultation, then choose the right path.</h2>
+              <p>{treatment.overview}</p>
               <div className="detail-proof-line">
                 <CheckIcon aria-hidden="true" />
-                <span>Doctor-led guidance before a procedure or product plan.</span>
+                <span>{treatment.consultation}</span>
               </div>
               <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}>
                 <PhoneIcon data-icon="inline-start" />
-                Call 78619 51664
+                Call {phoneDisplay}
               </a>
             </MotionReveal>
 
@@ -171,15 +176,88 @@ export default async function TreatmentPage({ params }) {
               <CardContent>
                 <Accordion defaultValue={["highlight-0"]} className="treatment-accordion">
                   {treatment.highlights.map((highlight, index) => (
-                    <AccordionItem key={highlight} value={`highlight-${index}`}>
-                      <AccordionTrigger>{highlight}</AccordionTrigger>
+                    <AccordionItem key={highlight.title} value={`highlight-${index}`}>
+                      <AccordionTrigger>{highlight.title}</AccordionTrigger>
                       <AccordionContent>
-                        Discuss this focus with Dr. Hiteshree Shah during your consultation so the next step is clear for you.
+                        {highlight.body}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
               </CardContent>
+              </Card>
+            </MotionReveal>
+          </div>
+        </section>
+
+        <BeforeAfterGallery
+          caseStudies={getCaseStudiesForTreatment(treatment.slug)}
+          heading="See how follow-up is documented."
+          intro="These clinic-shared photos show why timing, examination, and review matter. They are examples, not a promise of outcome."
+          compact
+        />
+
+        <section className="treatment-journey-section" aria-labelledby="journey-heading">
+          <div className="page-container treatment-journey-grid">
+            <MotionReveal className="treatment-journey-copy" amount={0.16}>
+              <p className="section-note">What happens next</p>
+              <h2 id="journey-heading">Care is planned in three clear conversations.</h2>
+              <p>
+                The right plan depends on your symptoms, history, examination, and goals. A consultation helps you understand the options before deciding what to do.
+              </p>
+              <p className="treatment-journey-note">
+                A diagnosis and personalised plan can only be confirmed after an in-person clinical assessment.
+              </p>
+            </MotionReveal>
+
+            <ol className="treatment-journey-list">
+              <li className="treatment-journey-step">
+                <span className="treatment-journey-index">01</span>
+                <div>
+                  <h3>Assess the concern</h3>
+                  <p>The doctor reviews your symptoms, medical history, skin or scalp findings, and what you want to change.</p>
+                </div>
+              </li>
+              <li className="treatment-journey-step">
+                <span className="treatment-journey-index">02</span>
+                <div>
+                  <h3>Choose what is suitable</h3>
+                  <p>You discuss the diagnosis or clinical impression, available options, preparation, possible limits, and whether a procedure is appropriate.</p>
+                </div>
+              </li>
+              <li className="treatment-journey-step">
+                <span className="treatment-journey-index">03</span>
+                <div>
+                  <h3>Review the plan</h3>
+                  <p>The clinic explains aftercare and follow-up so you know what to monitor and when to return for review.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section className="treatment-faq-section" aria-labelledby="faq-heading">
+          <div className="page-container treatment-faq-grid">
+            <MotionReveal className="treatment-faq-intro" amount={0.16}>
+              <p className="section-note">Before you book</p>
+              <h2 id="faq-heading">Good questions make the first visit easier.</h2>
+              <p>
+                Use these answers as a starting point. Your doctor will tailor the advice to your examination and history.
+              </p>
+            </MotionReveal>
+
+            <MotionReveal className="treatment-faq-motion" preset="clip" delay={0.08} amount={0.16}>
+              <Card className="treatment-faq-card">
+                <CardContent>
+                  <Accordion className="treatment-accordion">
+                    {treatment.faqs.map((faq, index) => (
+                      <AccordionItem key={faq.question} value={`faq-${index}`}>
+                        <AccordionTrigger>{faq.question}</AccordionTrigger>
+                        <AccordionContent>{faq.answer}</AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </CardContent>
               </Card>
             </MotionReveal>
           </div>
@@ -206,8 +284,12 @@ export default async function TreatmentPage({ params }) {
 
       <footer className="treatment-footer">
         <div className="page-container treatment-footer-inner">
-          <Link href="/" className="treatment-footer-brand">Shreemay Skin Clinic</Link>
-          <span>Skin, hair, laser, and vitiligo care in Vadodara.</span>
+          <Link href="/" className="treatment-footer-brand">{clinicName}</Link>
+          <span>{clinicAddress}</span>
+          <a href={googleMapsHref} target="_blank" rel="noopener noreferrer">
+            Get directions
+            <ArrowUpRightIcon data-icon="inline-end" />
+          </a>
           <Link href="/" className={buttonVariants({ variant: "link", size: "sm" })}>
             Return to home
             <ArrowRightIcon data-icon="inline-end" />

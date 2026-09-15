@@ -1,14 +1,32 @@
+// Add clinic-owned MP4/WebM URLs to videoSrc for seamless muted looping previews.
+// Until supplied, the component displays the real Instagram embed.
 export const instagramReels = [
   {
     url: 'https://www.instagram.com/reel/DLeUXLcIi7I/',
-    title: 'Skin care guidance',
-    description: 'Helpful dermatologist-led advice from the clinic.',
-    image: '/images/dr-hiteshree-profile-card.png',
+    title: 'Shampoo and hair fall',
+    description: 'A clear answer to a common hair-care question.',
+    videoSrc: '',
+    poster: '',
   },
   {
-    url: 'https://www.instagram.com/reel/DKQ0NNsoLr0/',
-    title: 'Treatment explainers',
-    description: 'Simple education before choosing skin or hair treatment.',
-    image: '/images/treatment-area.png',
+    url: 'https://www.instagram.com/reel/DLmFii4Rdvw/',
+    title: 'Are you applying sunscreen right?',
+    description: 'Small sunscreen mistakes that are easy to miss.',
+    videoSrc: '',
+    poster: '',
+  },
+  {
+    url: 'https://www.instagram.com/reel/DLWiNa0IqeW/',
+    title: 'Choosing the right sunscreen',
+    description: 'How skin type and concern change the choice.',
+    videoSrc: '',
+    poster: '',
+  },
+  {
+    url: 'https://www.instagram.com/reel/DKo_yNkIGtJ/',
+    title: 'Microneedling at the clinic',
+    description: 'What a personalised, clinical treatment plan considers.',
+    videoSrc: '',
+    poster: '',
   },
 ];

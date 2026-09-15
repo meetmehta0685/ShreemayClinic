@@ -1,5 +1,12 @@
 import { Alegreya, Manrope } from "next/font/google";
 import "./globals.css";
+import {
+  clinicAddress,
+  clinicName,
+  doctorName,
+  instagramHref,
+} from "@/data/clinic";
+import { treatments } from "@/data/treatments";
 
 const alegreya = Alegreya({
   variable: "--font-alegreya",
@@ -22,6 +29,9 @@ export const metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
+  alternates: {
+    canonical: "/",
+  },
   applicationName: "Shreemay Skin Clinic",
   keywords: [
     "dermatologist in Vadodara",
@@ -41,10 +51,10 @@ export const metadata = {
     siteName: "Shreemay Skin Clinic",
     images: [
       {
-        url: "/images/signage.jpg",
-        width: 1200,
-        height: 900,
-        alt: "Shreemay Skin Clinic in Vadodara",
+        url: "/images/dr-hiteshree-iadvl-optimized.jpg",
+        width: 1000,
+        height: 936,
+        alt: "Dr. Hiteshree Shah at Shreemay Skin Clinic",
       },
     ],
   },
@@ -66,15 +76,16 @@ export const metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "MedicalClinic",
-  name: "Shreemay Skin Clinic",
+  name: clinicName,
   alternateName: "Shreemay Clinic",
   url: siteUrl,
   medicalSpecialty: ["Dermatology", "Cosmetic Dermatology"],
   telephone: "+91-78619-51664",
-  image: `${siteUrl}/images/signage.jpg`,
+  image: `${siteUrl}/images/dr-hiteshree-iadvl-optimized.jpg`,
+  sameAs: [instagramHref],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Shop No. 8, 1st Floor, Ananya Complex, Old Padra Road, Akshar Chowk, Tandalja",
+    streetAddress: "Shop No. 8, 1st Floor, Ananya Complex, Akshar Chowk, O.P. Road",
     addressLocality: "Vadodara",
     addressRegion: "Gujarat",
     postalCode: "390012",
@@ -96,19 +107,13 @@ const structuredData = {
   ],
   physician: {
     "@type": "Physician",
-    name: "Dr. Hiteshree Shah",
+    name: doctorName,
     medicalSpecialty: "Dermatology",
-    description: "MBBS, MD Skin and Venereal Disease, Fellowship in Dermatosurgery.",
+    description: "MBBS, MD Skin and Venereal Disease. Observership in dermatosurgery.",
   },
-  availableService: [
-    "Acne treatment",
-    "Hair fall treatment",
-    "Vitiligo surgery",
-    "Laser hair removal",
-    "PRP therapy",
-    "Chemical peeling",
-    "Skin rejuvenation",
-  ],
+  availableService: treatments.map((treatment) => treatment.shortTitle),
+  description: `${clinicName} provides dermatologist-led skin, hair, laser, cosmetic, vitiligo, and dermatosurgical consultations in Vadodara.`,
+  disambiguatingDescription: clinicAddress,
 };
 
 const directionContract = `<!--

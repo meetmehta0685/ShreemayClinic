@@ -12,7 +12,7 @@ Existing Next.js 16 App Router application using JavaScript and npm (inferred fr
 
 ## Users
 
-People in Vadodara looking for a dermatologist for skin, hair, laser, cosmetic, or vitiligo concerns. Caregivers may also be evaluating care for a family member.
+People in Vadodara seeking medical skin and hair care, with cosmetic treatments alongside, as confirmed by the user on 10 September 2026. Caregivers may also be evaluating care for a family member.
 
 ## Product Purpose
 
