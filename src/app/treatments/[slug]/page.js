@@ -14,11 +14,9 @@ import {
 
 import { buttonVariants } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -86,10 +84,6 @@ export default async function TreatmentPage({ params }) {
                 <ArrowLeftIcon data-icon="inline-start" />
                 Back to care index
               </Link>
-              <div className="treatment-context">
-                <Badge variant="secondary">{treatment.category}</Badge>
-                <span>Shreemay Clinic · Vadodara</span>
-              </div>
               <h1 id="treatment-heading">{treatment.title}</h1>
               <p className="treatment-lede">{treatment.description}</p>
               <div className="treatment-actions">
@@ -124,11 +118,7 @@ export default async function TreatmentPage({ params }) {
               <CardHeader>
                 <div>
                   <CardTitle>{treatment.shortTitle}</CardTitle>
-                  <CardDescription>A treatment-focused visual for a doctor-led consultation.</CardDescription>
                 </div>
-                <CardAction>
-                  <Badge variant="outline">Treatment focus</Badge>
-                </CardAction>
               </CardHeader>
               <CardContent className="treatment-visual-media">
                 <Image
@@ -140,7 +130,6 @@ export default async function TreatmentPage({ params }) {
                   sizes="(max-width: 1023px) 92vw, 43vw"
                 />
                 <div className="treatment-image-caption">
-                  <span>{treatment.group}</span>
                   <strong>{treatment.imageLabel}</strong>
                 </div>
               </CardContent>
@@ -200,7 +189,6 @@ export default async function TreatmentPage({ params }) {
         <section className="treatment-journey-section" aria-labelledby="journey-heading">
           <div className="page-container treatment-journey-grid">
             <MotionReveal className="treatment-journey-copy" amount={0.16}>
-              <p className="section-note">What happens next</p>
               <h2 id="journey-heading">Care is planned in three clear conversations.</h2>
               <p>
                 The right plan depends on your symptoms, history, examination, and goals. A consultation helps you understand the options before deciding what to do.
@@ -239,7 +227,6 @@ export default async function TreatmentPage({ params }) {
         <section className="treatment-faq-section" aria-labelledby="faq-heading">
           <div className="page-container treatment-faq-grid">
             <MotionReveal className="treatment-faq-intro" amount={0.16}>
-              <p className="section-note">Before you book</p>
               <h2 id="faq-heading">Good questions make the first visit easier.</h2>
               <p>
                 Use these answers as a starting point. Your doctor will tailor the advice to your examination and history.

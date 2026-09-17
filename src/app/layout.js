@@ -1,4 +1,4 @@
-import { Alegreya, Manrope } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
 import {
   clinicAddress,
@@ -8,15 +8,10 @@ import {
 } from "@/data/clinic";
 import { treatments } from "@/data/treatments";
 
-const alegreya = Alegreya({
-  variable: "--font-alegreya",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
+  weight: ["400", "700", "900"],
   display: "swap",
 });
 
@@ -116,20 +111,10 @@ const structuredData = {
   disambiguatingDescription: clinicAddress,
 };
 
-const directionContract = `<!--
-THESIS: A premium clinic can feel personal without softening its medical credibility.
-OWN-WORLD: Aubergine, mineral white, coral, and eucalyptus; confident typography; real doctor and clinic photography; direct care pathways.
-STORY: A visitor meets the doctor, finds the right concern, understands the consultation, and books with confidence.
-FIRST VIEWPORT: A dark, concise care promise beside a large real portrait, followed by proof and immediate booking choices.
-FORM: A polished private-practice reception, calm in daylight and easy to use on a phone.
-FINISH: responsive, accessible, and verified across the homepage and treatment routes.
--->`;
-
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-IN" className={`${alegreya.variable} ${manrope.variable}`}>
+    <html lang="en-IN" className={lato.variable}>
       <body>
-        <div hidden aria-hidden="true" dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}
         <script
           type="application/ld+json"

@@ -15,7 +15,6 @@ export default function BeforeAfterGallery({
       <div className="page-container">
         <div className="before-after-heading">
           <div>
-            <p className="section-note">Selected case documentation</p>
             <h2 id="case-studies-heading">{heading}</h2>
           </div>
           <p>{intro}</p>
@@ -65,7 +64,6 @@ export default function BeforeAfterGallery({
                 )}
               </div>
               <div className="before-after-copy">
-                <p className="before-after-eyebrow">{study.eyebrow}</p>
                 <h3>{study.title}</h3>
                 <p>{study.note}</p>
               </div>

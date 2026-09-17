@@ -41,14 +41,19 @@ function Reel({ reel, paused }) {
 
   return (
     <article className="reel-tile" aria-label={reel.title}>
-      <div className="reel-media">
+      <div className={reel.videoSrc && !failed ? "reel-media" : "reel-link-media"}>
         {reel.videoSrc && !failed ? (
           <>
             <video ref={videoRef} src={reel.videoSrc} poster={reel.poster || undefined} muted loop playsInline preload="none" controls={paused} onError={() => setFailed(true)} aria-label={reel.title} />
             {!paused && <a className="reel-hover-link" href={reel.url} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${reel.title} on Instagram`}><InstagramIcon aria-hidden="true" /></a>}
           </>
         ) : (
-          <iframe src={`${reel.url}embed/`} title={`${reel.title} on Instagram`} loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerPolicy="strict-origin-when-cross-origin" />
+          <a className="reel-reading" href={reel.url} target="_blank" rel="noopener noreferrer">
+            <InstagramIcon aria-hidden="true" />
+            <h3>{reel.title}</h3>
+            <p>{reel.description}</p>
+            <span>Watch on Instagram <ArrowUpRightIcon aria-hidden="true" /></span>
+          </a>
         )}
       </div>
       <a className="reel-caption" href={reel.url} target="_blank" rel="noopener noreferrer">

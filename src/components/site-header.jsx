@@ -20,7 +20,6 @@ const navigation = [
   { label: "Treatments", href: "#care" },
   { label: "Doctor", href: "#doctor" },
   { label: "The clinic", href: "#clinic" },
-  { label: "Patient stories", href: "#reviews" },
   { label: "Visit", href: "#visit" },
 ];
 
@@ -90,14 +89,14 @@ export default function SiteHeader({ bookingUrl, phoneHref }) {
           <Image
             src="/images/logo.png"
             alt=""
-            width={56}
-            height={56}
+            width={100}
+            height={100}
             priority
             className="brand-mark"
           />
           <span className="brand-copy">
-            <span>Shreemay</span>
-            <span>Skin Clinic</span>
+            <span>Shreemay Skin Clinic</span>
+            <span>Skin · Hair · Laser · Vitiligo</span>
           </span>
         </a>
 
@@ -115,20 +114,13 @@ export default function SiteHeader({ bookingUrl, phoneHref }) {
 
         <div className="site-header-actions">
           <a
-            href={phoneHref}
-            className={`${buttonVariants({ variant: "outline", size: "sm" })} header-call hidden sm:inline-flex`}
-          >
-            <PhoneIcon data-icon="inline-start" />
-            Call
-          </a>
-          <a
             href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={`${buttonVariants({ size: "sm" })} header-book hidden sm:inline-flex`}
           >
             <CalendarDaysIcon data-icon="inline-start" />
-            Book online
+            Book an appointment
           </a>
 
           <Sheet>

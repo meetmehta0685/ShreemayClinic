@@ -62,7 +62,6 @@ export default async function CareCategoryPage({ params }) {
               <ArrowLeftIcon data-icon="inline-start" />
               Back to care categories
             </Link>
-            <p className="care-category-eyebrow">{group.eyebrow}</p>
             <h1 id="category-heading">{group.title} care in Vadodara.</h1>
             <p>{group.description}</p>
           </div>
@@ -71,7 +70,6 @@ export default async function CareCategoryPage({ params }) {
         <section className="care-category-section" aria-labelledby="category-treatments-heading">
           <div className="page-container care-category-heading">
             <div>
-              <p className="section-note">Choose what you want to understand</p>
               <h2 id="category-treatments-heading">Explore {group.title.toLowerCase()} treatments.</h2>
             </div>
             <p>
@@ -84,7 +82,6 @@ export default async function CareCategoryPage({ params }) {
               <MotionReveal key={treatment.slug} delay={index * 0.04} amount={0.16}>
                 <Link href={`/treatments/${treatment.slug}`} className="care-category-item">
                   <div>
-                    <span>{treatment.category}</span>
                     <h3>{treatment.shortTitle}</h3>
                     <p>{treatment.description}</p>
                   </div>
