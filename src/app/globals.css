@@ -286,7 +286,7 @@ section { scroll-margin-top: 6rem; }
 .before-after-copy > p:last-child { font-size: 1rem; line-height: 1.55; }
 .before-after-disclaimer { max-width: 70ch; margin-top: 1.5rem; color: var(--muted-foreground); font-size: 1rem; line-height: 1.6; }
 @media (max-width: 1023px) { .before-after-heading { grid-template-columns: 1fr; gap: 1rem; } }
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   .before-after-grid { grid-template-columns: 1fr; }
   .before-after-media-with-detail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .before-after-detail { grid-column: 1 / -1; }
@@ -383,7 +383,7 @@ section { scroll-margin-top: 6rem; }
 .reels-controls button:hover:not(:disabled) { background: var(--clinic-mint); }
 .reels-controls button:disabled { opacity: 0.35; cursor: default; }
 .reels-controls button svg { width: 18px; height: 18px; }
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   .reel-tile { flex: 0 0 82%; min-width: 0; max-width: 340px; }
   .reels-footer { align-items: flex-start; flex-direction: column; }
   .reels-profile { font-size: 1rem; }
@@ -532,7 +532,7 @@ section { scroll-margin-top: 6rem; }
   .treatment-detail-grid { gap: 3rem; }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 767px) {
 
 
 
@@ -611,7 +611,7 @@ a { text-underline-offset:.2em; }
 .clinic-image span { background:var(--clinic-plum); color:white; padding:8px 12px; border-radius:4px; }
 .treatment-image-caption { position:static; color:var(--foreground); padding:20px; text-shadow:none; border:0; }
 @media (min-width:640px) { .page-container { width:min(calc(100% - 144px),1304px); } }
-@media (min-width:761px) and (max-width:1200px) {
+@media (min-width:768px) and (max-width:1200px) {
  .welcome-copy { padding:48px 28px 32px 40px; }
  .welcome { padding-right:24px; grid-template-columns:1.15fr 1fr; }
  .welcome h1 { font-size:clamp(42px,5vw,62px); }
@@ -635,7 +635,7 @@ a { text-underline-offset:.2em; }
  .doctor-portrait { position:static; }
  .welcome-conversation { grid-template-columns:1fr 1fr; }
 }
-@media (max-width:760px) {
+@media (max-width:767px) {
  .site-header-inner { min-height:80px; }
  .brand-lockup { gap:10px; min-width:0; }
  .brand-mark { width:64px; height:64px; }
@@ -679,13 +679,13 @@ a { text-underline-offset:.2em; }
  @keyframes welcome-settle { from { clip-path:inset(0 0 2% 0); } to { clip-path:inset(0); } }
 }
 
-@media (min-width:761px) and (max-width:1200px) { .header-book { min-width:0; } }
+@media (min-width:768px) and (max-width:1200px) { .header-book { min-width:0; } }
 
-@media (min-width:761px) and (max-width:1100px) {
+@media (min-width:768px) and (max-width:1100px) {
  .site-header .site-nav { display:none; }
  .site-header .mobile-menu-trigger { display:inline-flex; }
 }
-@media (min-width:640px) and (max-width:760px) {
+@media (min-width:640px) and (max-width:767px) {
  .header-book { min-width:0; font-size:16px; }
 }
 
@@ -706,4 +706,18 @@ a { text-underline-offset:.2em; }
 .directions-caption h3 { font-size:26px; line-height:1.2; }
 .directions-caption p { margin-top:12px; font-size:16px; }
 .map-link { position:static; align-self:flex-start; margin:12px 26px 26px; }
-@media(max-width:760px) { .map-frame > img { height:auto; aspect-ratio:1.2; } }
+@media(max-width:767px) { .map-frame > img { height:auto; aspect-ratio:1.2; } }
+
+/* Keep the treatment visual useful before the long-form details on phones. */
+@media (max-width: 767px) {
+  .treatment-visual-media img {
+    min-height: 0;
+    height: clamp(21rem, 75vw, 32rem);
+    object-position: center 28%;
+  }
+
+  .floating-contact {
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}

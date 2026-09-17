@@ -128,11 +128,13 @@ The display token describes the desktop welcome headline. General H1 elements us
 
 ## Layout
 
-The standard desktop container caps at 1304px with 72px side gutters. At 761–1200px it uses 40px gutters; at 760px and below it uses 20px. The welcome composition caps at 1448px and uses a 1.4807:1 split, with a 34px right inset. Its doctor photograph remains rectangular with a pine caption below it.
+The standard desktop container caps at 1304px with 72px side gutters. At 768–1200px it uses 40px gutters; at 767px and below it uses 20px. Mobile ends at 767px; tablet starts at 768px. The welcome composition caps at 1448px and uses a 1.4807:1 split, with a 34px right inset. Its doctor photograph remains rectangular with a pine caption below it.
 
-At 761–1200px, the welcome split becomes 1.15:1 and actions contract. At 760px and below, introduction, full-width booking/call controls and portrait stack. The welcome heading becomes `clamp(36px, 6.8vw, 50px)`; below 360px it becomes 32px. The directory becomes two columns, then one below 360px. The reception conversation stacks on mobile.
+At 768–1200px, the welcome split becomes 1.15:1 and actions contract. At 767px and below, introduction, full-width booking/call controls and portrait stack. The welcome heading becomes `clamp(36px, 6.8vw, 50px)`; below 360px it becomes 32px. The directory becomes two columns, then one below 360px. The reception conversation stacks on mobile.
 
-The care grid uses four columns, two at 1023px and below, and one at 760px and below. Doctor, process, review, visit and treatment layouts collapse at 1023px. Clinic photographs and footer groups stack at 760px. Desktop navigation is replaced by a right-side Sheet through 1100px; the booking control appears from 640px. Header heights are 112px desktop, 92px at intermediate widths and 80px on mobile.
+The care grid uses four columns, two at 1023px and below, and one at 767px and below. Doctor, process, review, visit and treatment layouts collapse at 1023px. Clinic photographs and footer groups stack at 767px and below. Desktop navigation is replaced by a right-side Sheet through 1100px; the booking control appears from 640px. Header heights are 112px desktop, 92px at intermediate widths and 80px on mobile.
+
+On mobile, treatment hero images remove the desktop minimum height and use `height: clamp(21rem, 75vw, 32rem)` with `object-position: center 28%` and cover cropping. This keeps the image useful without delaying the treatment details.
 
 ## Elevation & Depth
 
