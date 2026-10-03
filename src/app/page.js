@@ -16,6 +16,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import InstagramReels from "@/components/InstagramReels";
 import MotionReveal from "@/components/motion-reveal";
+import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/SiteHeader";
 import {
   bookingUrl,
@@ -23,13 +24,11 @@ import {
   clinicHours,
   clinicName,
   googleMapsHref,
-  instagramHref,
   phoneDisplay,
   phoneHref,
   whatsAppHref,
 } from "@/data/clinic";
 import { caseStudies } from "@/data/case-studies";
-import { serviceGroups } from "@/data/treatments";
 
 const reviews = [
   {
@@ -52,114 +51,207 @@ const reviews = [
   },
 ];
 
+const concernCards = [
+  { title: "Acne & pimples", detail: "Understand active acne and discuss suitable next steps.", href: "/treatments/acne-treatment" },
+  { title: "Pigmentation & melasma", detail: "Assessment for uneven tone, melasma, and dark spots.", href: "/pigmentation-melasma" },
+  { title: "Hair fall", detail: "Review the pattern, scalp, history, and treatment options.", href: "/hair-loss" },
+  { title: "Dandruff & scalp problems", detail: "Discuss itching, scaling, or other scalp concerns.", href: "/hair" },
+  { title: "Vitiligo", detail: "Assessment and individual follow-up planning.", href: "/treatments/vitiligo-treatment" },
+  { title: "Skin infections", detail: "Get a diagnosis and practical care plan.", href: "/skin" },
+  { title: "Laser hair reduction", detail: "Discuss suitability, preparation, and aftercare.", href: "/laser-hair-reduction" },
+  { title: "Skin rejuvenation", detail: "Explore options with a dermatologist after assessment.", href: "/laser-aesthetics" },
+  { title: "Other skin concerns", detail: "Start with an examination and a clear next step.", href: "/skin" },
+];
+
+const whyItems = [
+  {
+    title: "Doctor-led care",
+    body: "Every care plan begins with a consultation and clinical assessment.",
+  },
+  {
+    title: "Personalised options",
+    body: "Recommendations reflect your concern, skin or hair history, and individual needs.",
+  },
+  {
+    title: "Clear communication",
+    body: "Understand the diagnosis, available options, and follow-up before you begin.",
+  },
+  {
+    title: "A comfortable clinic",
+    body: "Meet the team in a calm, professional setting in Vadodara.",
+  },
+];
+
 const consultationSteps = [
-  ["Choose how to book", "Use the online calendar, WhatsApp, or call the clinic directly."],
-  ["Meet the dermatologist", "Share your symptoms, history, routine, and the change you want to see."],
-  ["Leave with a clear plan", "Understand the diagnosis, options, aftercare, and follow-up before you begin."],
+  ["Consultation", "Discuss your concern, medical history, routine, and expectations."],
+  ["Examination", "Dr. Hiteshree Shah examines your skin, hair, or scalp."],
+  ["Diagnosis & options", "Understand the assessment and appropriate options for your concern."],
+  ["Personalised plan", "Leave with next steps and follow-up guidance suited to your situation."],
+];
+
+const homepageFaqs = [
+  {
+    question: "Do I need an appointment before visiting?",
+    answer: "Booking online is available through the clinic’s appointment calendar. You can also call or WhatsApp the clinic if you need help planning your visit.",
+  },
+  {
+    question: "What are the clinic timings?",
+    answer: "Monday to Saturday, 10 AM–2 PM and 5 PM–8 PM. The clinic is closed on Sunday.",
+  },
+  {
+    question: "Where is Shreemay Skin Clinic?",
+    answer: "The clinic is at Shop No. 8, 1st Floor, Ananya Complex, Akshar Chowk, O.P. Road, Vadodara.",
+  },
+  {
+    question: "Does the clinic treat hair fall?",
+    answer: "Yes. Hair fall, thinning, dandruff, and scalp concerns can be discussed with Dr. Hiteshree Shah.",
+  },
+  {
+    question: "Can I book a consultation for acne?",
+    answer: "Yes. The doctor can assess active acne and discuss suitable care after reviewing your skin and history.",
+  },
+  {
+    question: "Are laser treatments available?",
+    answer: "Laser hair reduction and other cosmetic or laser options can be discussed during a consultation.",
+  },
+  {
+    question: "Does the clinic provide vitiligo care?",
+    answer: "Yes. The clinic offers assessment, treatment planning, and follow-up conversations for vitiligo.",
+  },
+  {
+    question: "Can I consult for pigmentation or melasma?",
+    answer: "Yes. Bring details of your routine and previous products or treatments so the doctor can assess the concern.",
+  },
+  {
+    question: "How long does a dermatology consultation take?",
+    answer: "Consultation time can vary by concern. Call the clinic when booking if you need an estimate for your visit.",
+  },
+];
+
+const clinicPhotos = [
+  { src: "/images/reception.jpg", alt: "Reception desk at Shreemay Skin Clinic", label: "Reception", width: 1024, height: 768 },
+  { src: "/images/consult-desk.png", alt: "Consultation room at Shreemay Skin Clinic", label: "Consultation room", width: 765, height: 1020 },
+  { src: "/images/treatment-area.png", alt: "Waiting area at Shreemay Skin Clinic", label: "Waiting area", width: 765, height: 1020 },
+  { src: "/images/signage.jpg", alt: "Shreemay Skin Clinic signage at Ananya Complex", label: "Clinic signage", width: 1024, height: 894 },
 ];
 
 export default function Home() {
   return (
-    <>
+    <div className="home-page">
       <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
 
       <main id="top" tabIndex="-1">
         <section className="welcome" aria-labelledby="hero-heading">
           <div className="welcome-copy">
-            <h1 id="hero-heading">Skin and hair care,<br />with you at the centre.</h1>
-            <p className="welcome-lede">Consult Dr. Hiteshree Shah, MBBS, MD, for skin, hair, vitiligo and aesthetic concerns.</p>
+            <h1 id="hero-heading">Skin &amp; hair care in Vadodara</h1>
+            <p className="welcome-lede">
+              Consult Dr. Hiteshree Shah, MBBS, MD (Dermatology), for personalised care for skin, hair, vitiligo, and aesthetic concerns.
+            </p>
             <div className="welcome-actions">
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="welcome-book">Book an appointment<ArrowUpRightIcon aria-hidden="true" /></a>
-              <a href={phoneHref} className="welcome-call">Call the clinic<ArrowUpRightIcon aria-hidden="true" /></a>
+              <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="welcome-book">
+                <CalendarDaysIcon aria-hidden="true" />
+                Book an appointment
+                <ArrowUpRightIcon aria-hidden="true" />
+              </a>
+              <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className="welcome-call">
+                <MessageCircleIcon aria-hidden="true" />
+                WhatsApp us
+                <ArrowUpRightIcon aria-hidden="true" />
+              </a>
             </div>
-            <a className="welcome-location" href={googleMapsHref} target="_blank" rel="noopener noreferrer"><MapPinIcon aria-hidden="true" />Akshar Chowk, Vadodara</a>
+            <a className="welcome-location" href={googleMapsHref} target="_blank" rel="noopener noreferrer">
+              <MapPinIcon aria-hidden="true" />
+              Akshar Chowk, Vadodara
+            </a>
           </div>
+
           <figure className="welcome-portrait">
-            <Image src="/images/doctor-welcome.png" alt="Dr. Hiteshree Shah, dermatologist at Shreemay Skin Clinic" width={1000} height={936} priority sizes="(max-width: 760px) 100vw, 40vw" />
-            <figcaption><strong>Dr. Hiteshree Shah</strong><span>MBBS, MD Dermatology</span></figcaption>
+            <Image
+              src="/images/doctor-welcome.png"
+              alt="Dr. Hiteshree Shah, dermatologist at Shreemay Skin Clinic"
+              width={1000}
+              height={936}
+              priority
+              sizes="(max-width: 767px) 100vw, 40vw"
+            />
+            <figcaption>
+              <strong>Dr. Hiteshree Shah</strong>
+              <span>MBBS, MD (Dermatology)</span>
+            </figcaption>
           </figure>
         </section>
 
-        <nav className="care-directory" aria-label="Find care by concern">
+        <section className="trust-strip" aria-label="Clinic credentials and patient rating">
+          <div className="page-container trust-strip-inner">
+            <div><strong>MBBS, MD (Dermatology)</strong><span>B.J. Medical College, Ahmedabad</span></div>
+            <div><strong>Gujarat Rank 10</strong><span>NEET PG 2017</span></div>
+            <div><strong>Dermatology expertise</strong><span>Skin · Hair · Vitiligo · Aesthetics</span></div>
+            <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" aria-label="Read Shreemay Skin Clinic Google reviews">
+              <strong><span className="trust-rating">4.9 <span aria-hidden="true">★★★★★</span></span></strong>
+              <span>Google Reviews</span>
+            </a>
+          </div>
+        </section>
+
+        <nav id="care" className="care-directory" aria-label="Find care by concern">
           <div className="directory-inner">
-            <h2>How can we help?</h2>
-            <Link href="/care/skin">Skin concerns<ArrowUpRightIcon aria-hidden="true" /></Link>
-            <Link href="/care/hair">Hair &amp; scalp<ArrowUpRightIcon aria-hidden="true" /></Link>
-            <Link href="/care/dermatosurgery-vitiligo">Vitiligo care<ArrowUpRightIcon aria-hidden="true" /></Link>
-            <Link href="/care/cosmetic-laser">Laser &amp; aesthetics<ArrowUpRightIcon aria-hidden="true" /></Link>
+            <h2>Explore treatments</h2>
+            <Link href="/skin">
+              <strong>Skin</strong><span>Acne · pigmentation · infections</span><ArrowUpRightIcon aria-hidden="true" />
+            </Link>
+            <Link href="/hair">
+              <strong>Hair &amp; scalp</strong><span>Hair fall · dandruff · scalp concerns</span><ArrowUpRightIcon aria-hidden="true" />
+            </Link>
+            <Link href="/dermatosurgery">
+              <strong>Dermatosurgery</strong><span>Skin lesions · scars · vitiligo care</span><ArrowUpRightIcon aria-hidden="true" />
+            </Link>
+            <Link href="/laser-aesthetics">
+              <strong>Laser &amp; aesthetics</strong><span>Laser · cosmetic care · skin renewal</span><ArrowUpRightIcon aria-hidden="true" />
+            </Link>
           </div>
         </nav>
 
         <section className="welcome-conversation page-container" aria-labelledby="conversation-heading">
           <div>
-            <h2 id="conversation-heading">Care starts with a conversation.</h2>
-            <p>At Shreemay Skin Clinic, we listen, understand and create a personalised plan for your skin and hair health. Scientific care, in a comfortable and caring environment, right here in Vadodara.</p>
-            <a className="text-link" href="#doctor">Meet your dermatologist<ArrowUpRightIcon aria-hidden="true" /></a>
+            <h2 id="conversation-heading">Care that starts with you</h2>
+            <p>
+              Every skin and hair concern is different. Dr. Hiteshree Shah begins with a detailed consultation and examination before recommending a plan suited to your needs.
+            </p>
+            <p>
+              From everyday skin concerns to hair loss, vitiligo, and aesthetic care, the focus is on appropriate options, realistic expectations, and proper follow-up.
+            </p>
+            <Link className="text-link" href="/about-dr-hiteshree-shah">
+              Meet Dr. Hiteshree Shah<ArrowUpRightIcon aria-hidden="true" />
+            </Link>
           </div>
-          <Image src="/images/reception-welcome.png" alt="The reception at Shreemay Skin Clinic" width={1024} height={768} sizes="(max-width: 760px) 100vw, 40vw" />
+          <Image
+            src="/images/reception-welcome.png"
+            alt="Reception at Shreemay Skin Clinic"
+            width={1024}
+            height={768}
+            sizes="(max-width: 767px) 100vw, 40vw"
+          />
         </section>
 
-        <section id="care" className="care-section" aria-labelledby="care-heading">
-          <div className="page-container care-intro care-intro-centered">
-            <MotionReveal className="section-heading" amount={0.2}>
-              <h2 id="care-heading">What brings you to Shreemay?</h2>
-              <p className="care-intro-copy">
-                Start with a dermatologist consultation, then choose the right next step for your skin, hair, or treatment goal.
-              </p>
-            </MotionReveal>
-          </div>
-
-          <div className="page-container care-grid" role="list">
-            {serviceGroups.map((group, groupIndex) => (
-              <MotionReveal
-                key={group.slug}
-                className="care-group-motion"
-                delay={groupIndex * 0.05}
-                amount={0.12}
-                role="listitem"
-              >
-                <article className="care-group">
-                  <div className="care-group-heading">
-                    <h3>{group.eyebrow}</h3>
-                    <p>{group.description}</p>
-                  </div>
-
-                  <Link
-                    href={`/care/${group.slug}`}
-                    className="care-feature"
-                    aria-label={`Explore ${group.title} treatments`}
-                  >
-                    <div className="care-feature-media">
-                      <Image
-                        src={group.image}
-                        alt={group.imageAlt}
-                        width={720}
-                        height={440}
-                        sizes="(max-width: 760px) 92vw, (max-width: 1023px) 44vw, 22vw"
-                      />
-                    </div>
-                    <div className="care-feature-copy">
-                      <strong>{group.title}</strong>
-                      <span className="care-feature-arrow" aria-hidden="true">
-                        <ArrowUpRightIcon />
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-              </MotionReveal>
-            ))}
-          </div>
-
-          <div className="page-container care-support">
-            <span>Not sure where your concern fits?</span>
-            <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}>
-              <PhoneIcon data-icon="inline-start" />
-              Call the clinic
-            </a>
+        <section className="popular-concerns" aria-labelledby="popular-concerns-heading">
+          <div className="page-container">
+            <div className="popular-heading">
+              <div>
+                <h2 id="popular-concerns-heading">Find care for your concern</h2>
+              </div>
+              <p>Choose a concern to see what to discuss with the dermatologist and how a consultation can help clarify next steps.</p>
+            </div>
+            <div className="concern-grid">
+              {concernCards.map((concern) => (
+                <Link className="concern-link" href={concern.href} key={concern.title}>
+                  <strong>{concern.title}</strong>
+                  <span>{concern.detail}</span>
+                  <ArrowUpRightIcon aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
-
-        <BeforeAfterGallery caseStudies={caseStudies} />
 
         <section id="doctor" className="doctor-section" aria-labelledby="doctor-heading">
           <div className="page-container doctor-grid">
@@ -172,21 +264,23 @@ export default function Home() {
                 sizes="(max-width: 900px) 100vw, 44vw"
               />
               <div className="doctor-portrait-caption">
-                <strong>Care explained with patience.</strong>
+                <strong>Dr. Hiteshree Shah</strong>
+                <span>MBBS, MD (Dermatology)</span>
               </div>
             </MotionReveal>
 
             <MotionReveal className="doctor-copy" delay={0.08} amount={0.14}>
-              <h2 id="doctor-heading">Meet Dr. Hiteshree Shah.</h2>
+              <h2 id="doctor-heading">Meet Dr. Hiteshree Shah</h2>
+              <p className="doctor-subtitle">MBBS, MD (Dermatology) · Dermatologist in Vadodara</p>
               <p className="doctor-lede">
-                Dr. Hiteshree Shah is an MBBS, MD dermatologist focused on skin, hair, nails, vitiligo, laser, cosmetic, and dermatosurgical concerns.
+                Dr. Hiteshree Shah focuses on skin, hair, nails, vitiligo, laser, cosmetic, and dermatosurgical concerns.
               </p>
               <p>
-                Her training includes dermatology at B.J. Medical College, Ahmedabad, clinical experience in Ahmedabad and Vadodara, and observership in dermatosurgery. The clinic keeps the conversation practical so you understand the options and follow-up before treatment starts.
+                Her training includes dermatology at B.J. Medical College, Ahmedabad, clinical experience in Ahmedabad and Vadodara, and an observership in dermatosurgery. Consultations focus on understanding the concern and explaining options and follow-up.
               </p>
 
               <dl className="credentials-list">
-                <div><dt>Qualification</dt><dd>MBBS, MD in Skin &amp; Venereal Disease</dd></div>
+                <div><dt>Qualification</dt><dd>MBBS, MD (Skin &amp; Venereal Disease)</dd></div>
                 <div><dt>Training</dt><dd>B.J. Medical College, Ahmedabad</dd></div>
                 <div><dt>Advanced focus</dt><dd>Observership in Dermatosurgery</dd></div>
               </dl>
@@ -220,25 +314,43 @@ export default function Home() {
 
               <div className="doctor-actions">
                 <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
-                  Book with Dr. Shah
-                  <ArrowUpRightIcon data-icon="inline-end" />
+                  Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
                 </a>
-                <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "link", size: "lg" })}>
-                  Find the clinic
-                  <ExternalLinkIcon data-icon="inline-end" />
-                </a>
+                <Link href="/about-dr-hiteshree-shah" className={buttonVariants({ variant: "link", size: "lg" })}>
+                  View complete profile<ArrowUpRightIcon data-icon="inline-end" />
+                </Link>
               </div>
             </MotionReveal>
           </div>
         </section>
 
-        <InstagramReels />
+        <section className="why-section" aria-labelledby="why-heading">
+          <div className="page-container why-layout">
+            <div className="why-intro">
+              <h2 id="why-heading">Why choose Shreemay?</h2>
+              <p>Care begins with a conversation, a clear assessment, and a plan that fits the person in front of the doctor.</p>
+            </div>
+            <div className="why-list">
+              {whyItems.map((item) => (
+                <article className="why-item" key={item.title}>
+                  <div><h3>{item.title}</h3><p>{item.body}</p></div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <BeforeAfterGallery
+          caseStudies={caseStudies}
+          heading="Before &amp; follow-up"
+          intro="Clinical photographs are shared for educational purposes. Individual results vary depending on diagnosis, care, and response."
+        />
 
         <section className="process-section" aria-labelledby="process-heading">
           <div className="page-container process-layout">
             <div className="process-intro">
-              <h2 id="process-heading">A simple path from concern to care.</h2>
-              <p>Know what happens next before you make the appointment.</p>
+              <h2 id="process-heading">Your first visit</h2>
+              <p>Know what happens next before you book a consultation.</p>
             </div>
             <div className="process-list">
               {consultationSteps.map(([title, description], index) => (
@@ -254,7 +366,7 @@ export default function Home() {
         <section id="clinic" className="clinic-section" aria-labelledby="clinic-heading">
           <div className="page-container clinic-heading-row">
             <div className="section-heading">
-              <h2 id="clinic-heading">Take a look around the clinic.</h2>
+              <h2 id="clinic-heading">Inside the clinic</h2>
             </div>
             <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "outline", size: "lg" })}>
               <MapPinIcon data-icon="inline-start" />
@@ -263,39 +375,50 @@ export default function Home() {
           </div>
 
           <div className="clinic-gallery">
-            <MotionReveal className="clinic-image clinic-image-wide" preset="clip" amount={0.08}>
-              <Image src="/images/reception.jpg" alt="Reception desk at Shreemay Skin Clinic" width={1024} height={768} sizes="(max-width: 720px) 100vw, 50vw" />
-              <span>Reception</span>
-            </MotionReveal>
-            <MotionReveal className="clinic-image" preset="clip" delay={0.06} amount={0.08}>
-              <Image src="/images/consult-desk.png" alt="Consultation room at Shreemay Skin Clinic" width={765} height={1020} sizes="(max-width: 720px) 100vw, 25vw" />
-              <span>Consultation room</span>
-            </MotionReveal>
-            <MotionReveal className="clinic-image" preset="clip" delay={0.12} amount={0.08}>
-              <Image src="/images/treatment-area.png" alt="Waiting area at Shreemay Skin Clinic" width={765} height={1020} sizes="(max-width: 720px) 100vw, 25vw" />
-              <span>Waiting area</span>
-            </MotionReveal>
+            {clinicPhotos.map((photo, index) => (
+              <MotionReveal className={index === 0 ? "clinic-image clinic-image-wide" : "clinic-image"} preset="clip" delay={index * 0.04} amount={0.08} key={photo.src}>
+                <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(max-width: 767px) 100vw, 25vw" />
+                <span>{photo.label}</span>
+              </MotionReveal>
+            ))}
+          </div>
+          <p className="page-container clinic-caption">Located at Ananya Complex, near Akshar Chowk, Vadodara.</p>
+        </section>
+
+        <section className="faq-section" aria-labelledby="faq-heading">
+          <div className="page-container faq-layout">
+            <div className="faq-intro">
+              <h2 id="faq-heading">Before you visit</h2>
+              <p>Find practical details about appointments, care options, and visiting the clinic.</p>
+            </div>
+            <div className="faq-list">
+              {homepageFaqs.map((item) => (
+                <details className="faq-item" key={item.question}>
+                  <summary>{item.question}<span aria-hidden="true">+</span></summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 
         <section id="reviews" className="reviews-section" aria-labelledby="reviews-heading">
           <div className="page-container reviews-layout">
             <div className="reviews-intro">
-              <h2 id="reviews-heading">Trust built one conversation at a time.</h2>
+              <h2 id="reviews-heading">What our patients say</h2>
               <div className="reviews-rating">
                 <StarIcon aria-hidden="true" />
-                <strong>4.9 on Google</strong>
-                <span>Read the clinic listing for current review details</span>
+                <strong>4.9 ★★★★★ on Google</strong>
+                <span>Read verified patient reviews about their experience at Shreemay Skin Clinic.</span>
               </div>
               <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}>
-                Read more reviews
-                <ExternalLinkIcon data-icon="inline-end" />
+                Read Google reviews<ExternalLinkIcon data-icon="inline-end" />
               </a>
             </div>
 
             <div className="reviews-list">
               {reviews.map((review, index) => (
-                <MotionReveal key={review.name} className="review-item" delay={index * 0.06} amount={0.14}>
+                <MotionReveal key={review.name} className="review-item" delay={index * 0.04} amount={0.14}>
                   <blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
                   <div className="review-author">
                     <Avatar><AvatarFallback>{review.initials}</AvatarFallback></Avatar>
@@ -308,34 +431,38 @@ export default function Home() {
         </section>
 
 
-        <section id="visit" className="visit-section" aria-labelledby="visit-heading">
+
+        <InstagramReels />
+
+        <section id="visit" className="visit-section final-cta" aria-labelledby="visit-heading">
           <div className="page-container visit-layout">
             <div className="visit-copy">
-              <h2 id="visit-heading">Let’s make time for your skin.</h2>
-              <p>Choose a time online, send a WhatsApp message, or call the clinic. We are near Akshar Chowk on Old Padra Road.</p>
+              <h2 id="visit-heading">Book your visit</h2>
+              <p>Book an appointment with Dr. Hiteshree Shah at Shreemay Skin Clinic, Vadodara.</p>
 
               <div className="visit-actions">
                 <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
-                  <CalendarDaysIcon data-icon="inline-start" />Book online<ArrowUpRightIcon data-icon="inline-end" />
+                  <CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
                 </a>
                 <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}>
-                  <MessageCircleIcon data-icon="inline-start" />WhatsApp
+                  <MessageCircleIcon data-icon="inline-start" />WhatsApp us
                 </a>
                 <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}>
-                  <PhoneIcon data-icon="inline-start" />Call
+                  <PhoneIcon data-icon="inline-start" />Call {phoneDisplay}
                 </a>
               </div>
 
               <div className="visit-meta">
-                <div><Clock3Icon aria-hidden="true" /><span>{clinicHours[0].days}</span><strong>{clinicHours[0].hours}</strong></div>
-                <div><Clock3Icon aria-hidden="true" /><span>{clinicHours[1].days}</span><strong>{clinicHours[1].hours}</strong></div>
+                {clinicHours.map((item) => (
+                  <div key={item.days}><Clock3Icon aria-hidden="true" /><span>{item.days}</span><strong>{item.hours}</strong></div>
+                ))}
                 <div><MapPinIcon aria-hidden="true" /><span>{clinicName}</span><strong>{clinicAddress}</strong></div>
               </div>
             </div>
 
             <MotionReveal className="map-frame" preset="clip" delay={0.08} amount={0.1}>
-              <Image src="/images/signage.jpg" alt="Shreemay Skin Clinic signage at Ananya Complex, Akshar Chowk" width={1024} height={894} sizes="(max-width: 1023px) 100vw, 45vw" />
-              <div className="directions-caption"><h3>Find us at Akshar Chowk.</h3><p>Shop No. 8, 1st Floor, Ananya Complex, O.P. Road, Vadodara.</p></div>
+              <Image src="/images/consult-desk.png" alt="Consultation room at Shreemay Skin Clinic" width={765} height={1020} sizes="(max-width: 1023px) 100vw, 45vw" />
+              <div className="directions-caption"><h3>Visit us near Akshar Chowk</h3><p>Shop No. 8, 1st Floor, Ananya Complex, O.P. Road, Vadodara.</p></div>
               <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className="map-link">
                 <MapPinIcon aria-hidden="true" />Open in Google Maps<ArrowUpRightIcon aria-hidden="true" />
               </a>
@@ -344,26 +471,11 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="page-container footer-main">
-          <div className="footer-brand">
-            <Image src="/images/logo.png" alt="Shreemay Skin Clinic logo" width={72} height={72} />
-            <div><p className="footer-brand-name">{clinicName}</p><p>Skin, hair, laser, cosmetic, and vitiligo care by Dr. Hiteshree Shah in Vadodara.</p></div>
-          </div>
-          <div className="footer-links">
-            <div><span className="footer-label">Explore</span><a href="#care">Treatments</a><a href="#doctor">Dr. Hiteshree Shah</a><a href="#clinic">The clinic</a></div>
-            <div><span className="footer-label">Contact</span><a href={phoneHref}>{phoneDisplay}</a><a href={whatsAppHref} target="_blank" rel="noopener noreferrer">WhatsApp</a><a href={instagramHref} target="_blank" rel="noopener noreferrer">Instagram</a><address>{clinicAddress}</address></div>
-          </div>
-        </div>
-        <div className="page-container footer-bottom">
-          <span>Shreemay Skin Clinic · Vadodara</span>
-          <div><a href={bookingUrl} target="_blank" rel="noopener noreferrer">Book an appointment</a><a href={googleMapsHref} target="_blank" rel="noopener noreferrer">Google Maps</a></div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" aria-label="Chat with Shreemay Skin Clinic on WhatsApp" className="floating-contact">
         <MessageCircleIcon aria-hidden="true" /><span>WhatsApp</span>
       </a>
-    </>
+    </div>
   );
 }

@@ -10,13 +10,13 @@ export const treatments = [
   {
     slug: "acne-treatment",
     title: "Acne Treatment in Vadodara",
-    shortTitle: "Acne & Acne Scars",
+    shortTitle: "Acne & Pimples",
     category: "Skin",
     group: "Clinical dermatology",
     description:
-      "Doctor-led evaluation for active acne, marks, texture changes, and acne scars.",
+      "Assessment of active pimples, breakouts, and acne-related marks.",
     metaDescription:
-      "Doctor-led acne and acne-scar consultation in Vadodara for active acne, marks, texture, and long-term care planning.",
+      "Acne and pimples consultation in Vadodara with Dr. Hiteshree Shah, including skin assessment and follow-up planning.",
     overview:
       "Acne can change over time and may leave marks or scars. A consultation helps connect the pattern, duration, skin type, previous products, and your goals before a treatment plan is chosen.",
     consultation:
@@ -30,8 +30,8 @@ export const treatments = [
         body: "The doctor can assess the type and severity of active acne and explain suitable medical or procedural options.",
       },
       {
-        title: "Acne marks and scars",
-        body: "Marks and scars need different conversations. Your skin type, scar pattern, and previous treatment guide what may be appropriate.",
+        title: "Acne-related marks",
+        body: "Discuss marks left by breakouts, previous products, and your skin-care routine during the assessment.",
       },
       {
         title: "Chemical peels",
@@ -328,7 +328,7 @@ export const treatments = [
   {
     slug: "hair-transplant",
     title: "Hair Transplant Consultation in Vadodara",
-    shortTitle: "Hair Transplant",
+    shortTitle: "Hair Transplant Consultation",
     category: "Hair & Surgery",
     group: "Hair care",
     description:
@@ -561,7 +561,7 @@ export const treatments = [
       },
       {
         title: "Acne-scar planning",
-        body: "Active acne, marks, and scars may need to be addressed in a sequence rather than through one procedure alone.",
+        body: "Microneedling and laser treatment are available for acne-scar care. The doctor assesses scar type and active acne before recommending a procedure.",
       },
       {
         title: "Combination options",
@@ -657,26 +657,83 @@ export const serviceGroups = [
   },
   {
     slug: "hair",
-    title: "Hair",
-    eyebrow: "Hair care",
-    description: "Understand the pattern of hair loss before choosing medical, regenerative, or surgical options.",
+    title: "Hair & Scalp",
+    eyebrow: "Hair & scalp care",
+    description: "Explore care for hair fall, hair thinning, dandruff, and scalp conditions.",
     image: "/images/treatments/scalp-assessment.jpg",
     imageAlt: "Dermatologist examining a scalp part with a dermatoscope",
     slugs: ["hair-fall-treatment", "prp-therapy", "hair-transplant"],
+    optionsTitle: "More hair & scalp concerns",
+    options: [
+      { title: "Dandruff & scalp concerns", description: "Discuss itching, flaking, scalp discomfort, and products you have tried.", href: "/treatments/hair-fall-treatment" },
+      { title: "Hair thinning & patchy hair loss", description: "Review the pattern of hair loss, when it began, and changes in your health or routine.", href: "/treatments/hair-fall-treatment" },
+    ],
   },
   {
     slug: "cosmetic-laser",
     title: "Cosmetic & Laser",
     eyebrow: "Cosmetic & laser care",
-    description: "Discuss suitability, preparation, aftercare, and realistic next steps for procedures.",
+    description: "Explore laser and cosmetic options with a dermatologist-led suitability assessment.",
     image: "/images/treatments/laser-hair-reduction.jpg",
     imageAlt: "Laser hair-reduction handset prepared in a treatment room",
     slugs: ["laser-hair-removal", "chemical-peeling"],
+    optionsTitle: "Cosmetic procedures",
+    options: [
+      {
+        title: "Q-switch laser & pigmentation care",
+        description: "Laser options for dark spots and pigmentation after examining the mark and your skin type.",
+        href: "/treatments/pigmentation-melasma",
+      },
+      {
+        title: "Tattoo & birthmark laser care",
+        description: "Assessment of tattoos and birthmarks before choosing a laser approach. The treatment plan depends on the type, colour, and area involved.",
+      },
+      {
+        title: "Carbon laser peel",
+        description: "A cosmetic laser procedure. Discuss your skin concerns, preparation, and aftercare with the dermatologist before treatment.",
+      },
+      {
+        title: "Vampire peel for skin rejuvenation",
+        description: "A skin rejuvenation option. The doctor explains the procedure used at the clinic, its suitability, and recovery before you book treatment.",
+      },
+      {
+        title: "Botox for wrinkles",
+        description: "Botulinum toxin injections for selected expression lines, with the treatment areas chosen after a facial assessment.",
+      },
+      {
+        title: "Hydrafacial & medifacial",
+        description: "Facial procedures selected around your skin-care goals and current skin condition. Discuss the steps and products before treatment.",
+      },
+      {
+        title: "Tan removal & glow care",
+        description: "Care for tanning, dullness, and uneven tone. The doctor assesses your skin before recommending a peel or another suitable option.",
+        href: "/treatments/pigmentation-melasma",
+      },
+      {
+        title: "Microneedling & laser for acne scars",
+        description: "Procedural care for acne scars and uneven texture, with the choice guided by scar type, skin condition, and previous treatment.",
+        href: "/treatments/scar-revision",
+      },
+      {
+        title: "Skin tightening",
+        description: "Assessment of skin laxity and the area you want treated. The doctor explains the proposed procedure, its limits, and the expected recovery.",
+      },
+      {
+        title: "PRP therapy for hair loss",
+        description: "Hair-loss assessment and PRP planning. Explore the hair-care page for consultation details and follow-up questions.",
+        href: "/treatments/prp-therapy",
+      },
+      {
+        title: "Mole removal",
+        description: "An examination comes before removal. Discuss the mole, any recent changes, the removal method, and healing.",
+        href: "/treatments/cyst-mole-removal",
+      },
+    ],
   },
   {
     slug: "dermatosurgery-vitiligo",
-    title: "Dermatosurgery & Vitiligo",
-    eyebrow: "Dermatosurgery & vitiligo",
+    title: "Dermatosurgery",
+    eyebrow: "Dermatosurgery",
     description: "Doctor-led assessment for lesions, scars, vitiligo, and surgical conversations where appropriate.",
     image: "/images/treatments/lesion-assessment.jpg",
     imageAlt: "Dermatologist examining a skin mark with a dermatoscope",

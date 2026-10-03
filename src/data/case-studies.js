@@ -1,9 +1,10 @@
 export const caseStudies = [
   {
     id: "vitiligo",
+    comparison: "slider",
     eyebrow: "Documented follow-up",
-    title: "Vitiligo care",
-    note: "A clinic-shared photo pair showing a depigmented area at two points in care.",
+    title: "Vitiligo follow-up",
+    note: "Before and follow-up photographs of the same area during vitiligo care. Changes are reviewed alongside the clinical assessment.",
     before: {
       src: "/images/cases/vitiligo-before.png",
       alt: "Clinical photo of depigmented patches before follow-up",
@@ -20,16 +21,16 @@ export const caseStudies = [
   {
     id: "lesion",
     eyebrow: "Documented follow-up",
-    title: "Pigmented lesion assessment",
-    note: "A facial case pair shared for education around examination and follow-up.",
+    title: "Skin lesion follow-up",
+    note: "Facial photographs taken before and at follow-up. Skin lesions are assessed individually before care or removal is planned.",
     before: {
-      src: "/images/cases/lesion-before.jpeg",
+      src: "/images/cases/lesion-before-redacted.png",
       alt: "Clinical photo of facial skin with pigmented lesions before follow-up",
-      width: 1800,
-      height: 1350,
+      width: 1350,
+      height: 1800,
     },
     after: {
-      src: "/images/cases/lesion-followup.jpeg",
+      src: "/images/cases/lesion-followup-redacted.png",
       alt: "Clinical follow-up photo of facial skin after assessment",
       width: 1350,
       height: 1800,
@@ -38,26 +39,26 @@ export const caseStudies = [
   {
     id: "procedure",
     eyebrow: "Documented follow-up",
-    title: "Clinical skin follow-up",
-    note: "A clinic-shared photo pair showing how follow-up documentation can support a treatment plan.",
+    title: "Facial skin follow-up",
+    note: "Facial skin photographed before and at follow-up. Each care plan depends on the examination, skin history, and individual response.",
     before: {
-      src: "/images/cases/procedure-before.jpeg",
+      src: "/images/cases/procedure-before-redacted.png",
       alt: "Clinical photo before a skin treatment follow-up",
-      width: 1800,
-      height: 1350,
+      width: 1350,
+      height: 1800,
     },
     after: {
-      src: "/images/cases/procedure-followup.jpeg",
+      src: "/images/cases/procedure-followup-redacted.png",
       alt: "Clinical follow-up photo after a skin treatment",
-      width: 1800,
-      height: 1350,
+      width: 1350,
+      height: 1800,
     },
   },
   {
     id: "focused-area",
     eyebrow: "Documented follow-up",
-    title: "Focused area follow-up",
-    note: "A close-up case pair shared by the clinic for context; suitability and response vary by person.",
+    title: "Earlobe follow-up",
+    note: "Close-up views of the earlobe before and at follow-up, with a photograph taken during care. The procedure and follow-up plan are specific to the individual case.",
     before: {
       src: "/images/cases/focused-before.jpeg",
       alt: "Close-up clinical photo before follow-up",
@@ -82,8 +83,6 @@ export const caseStudies = [
 const treatmentCaseMap = {
   "vitiligo-treatment": ["vitiligo"],
   "cyst-mole-removal": ["lesion"],
-  "scar-revision": ["procedure"],
-  "warts-skin-tags": ["focused-area"],
 };
 
 export function getCaseStudiesForTreatment(slug) {

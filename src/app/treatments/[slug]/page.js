@@ -24,6 +24,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import MotionReveal from "@/components/motion-reveal";
+import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/SiteHeader";
 import {
   bookingUrl,
@@ -80,9 +81,9 @@ export default async function TreatmentPage({ params }) {
         <section className="treatment-hero" aria-labelledby="treatment-heading">
           <div className="page-container treatment-hero-grid">
             <MotionReveal className="treatment-copy" preset="rise">
-              <Link href="/#care" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+              <Link href="/treatments" className={buttonVariants({ variant: "ghost", size: "sm" })}>
                 <ArrowLeftIcon data-icon="inline-start" />
-                Back to care index
+                All treatments
               </Link>
               <h1 id="treatment-heading">{treatment.title}</h1>
               <p className="treatment-lede">{treatment.description}</p>
@@ -94,7 +95,7 @@ export default async function TreatmentPage({ params }) {
                   className={buttonVariants({ size: "lg" })}
                 >
                   <CalendarDaysIcon data-icon="inline-start" />
-                  Book a consultation
+                  Book an appointment
                   <ArrowUpRightIcon data-icon="inline-end" />
                 </a>
                 <a
@@ -115,11 +116,6 @@ export default async function TreatmentPage({ params }) {
 
             <MotionReveal className="treatment-visual-motion" preset="clip" delay={0.08} amount={0.12}>
               <Card className="treatment-visual-card">
-              <CardHeader>
-                <div>
-                  <CardTitle>{treatment.shortTitle}</CardTitle>
-                </div>
-              </CardHeader>
               <CardContent className="treatment-visual-media">
                 <Image
                   src={treatment.image}
@@ -134,7 +130,7 @@ export default async function TreatmentPage({ params }) {
                 </div>
               </CardContent>
               <CardFooter>
-                <span>{doctorName} · MD Dermatology</span>
+                <span>{doctorName} · MBBS, MD (Dermatology)</span>
               </CardFooter>
               </Card>
             </MotionReveal>
@@ -144,7 +140,7 @@ export default async function TreatmentPage({ params }) {
         <section className="treatment-detail-section" aria-labelledby="detail-heading">
           <div className="page-container treatment-detail-grid">
             <MotionReveal className="treatment-detail-copy" amount={0.16}>
-              <h2 id="detail-heading">Start with a consultation, then choose the right path.</h2>
+              <h2 id="detail-heading">Your consultation</h2>
               <p>{treatment.overview}</p>
               <div className="detail-proof-line">
                 <CheckIcon aria-hidden="true" />
@@ -189,7 +185,7 @@ export default async function TreatmentPage({ params }) {
         <section className="treatment-journey-section" aria-labelledby="journey-heading">
           <div className="page-container treatment-journey-grid">
             <MotionReveal className="treatment-journey-copy" amount={0.16}>
-              <h2 id="journey-heading">Care is planned in three clear conversations.</h2>
+              <h2 id="journey-heading">Your care plan</h2>
               <p>
                 The right plan depends on your symptoms, history, examination, and goals. A consultation helps you understand the options before deciding what to do.
               </p>
@@ -227,7 +223,7 @@ export default async function TreatmentPage({ params }) {
         <section className="treatment-faq-section" aria-labelledby="faq-heading">
           <div className="page-container treatment-faq-grid">
             <MotionReveal className="treatment-faq-intro" amount={0.16}>
-              <h2 id="faq-heading">Good questions make the first visit easier.</h2>
+              <h2 id="faq-heading">Before your visit</h2>
               <p>
                 Use these answers as a starting point. Your doctor will tailor the advice to your examination and history.
               </p>
@@ -261,28 +257,15 @@ export default async function TreatmentPage({ params }) {
                 Book an appointment
                 <ArrowRightIcon data-icon="inline-end" />
               </a>
-              <Link href="/#care" className={buttonVariants({ variant: "outline", size: "lg" })}>
-                Explore all care
+              <Link href="/treatments" className={buttonVariants({ variant: "outline", size: "lg" })}>
+                Explore treatments
               </Link>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="treatment-footer">
-        <div className="page-container treatment-footer-inner">
-          <Link href="/" className="treatment-footer-brand">{clinicName}</Link>
-          <span>{clinicAddress}</span>
-          <a href={googleMapsHref} target="_blank" rel="noopener noreferrer">
-            Get directions
-            <ArrowUpRightIcon data-icon="inline-end" />
-          </a>
-          <Link href="/" className={buttonVariants({ variant: "link", size: "sm" })}>
-            Return to home
-            <ArrowRightIcon data-icon="inline-end" />
-          </Link>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

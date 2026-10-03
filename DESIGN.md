@@ -1,6 +1,6 @@
 ---
 name: Shreemay Skin Clinic
-description: Welcome desk — real clinic evidence, white space, pine structure and burgundy appointment actions.
+description: Real clinic evidence, with a home-only deep teal and warm coral direction.
 colors:
   white: "#ffffff"
   pine-text: "#173f35"
@@ -17,6 +17,11 @@ colors:
   border: "#ccd9cf"
   light-text: "#dce8df"
   directory-rule: "#6a8b7e"
+  home-deep-teal: "#0f4a4c"
+  home-teal-text: "#123b3d"
+  home-warm-coral: "#e6a08b"
+  home-soft-coral: "#f2ded6"
+  home-cream: "#f7f3ee"
   whatsapp: "oklch(0.55 0.137 153)"
   whatsapp-hover: "oklch(0.47 0.12 153)"
 typography:
@@ -71,12 +76,12 @@ spacing:
   desktop-gutter: "72px"
 components:
   welcome-book:
-    backgroundColor: "{colors.burgundy}"
+    backgroundColor: "{colors.home-deep-teal}"
     textColor: "{colors.white}"
     rounded: "{rounded.welcome-control}"
     padding: "18px 28px"
   welcome-book-hover:
-    backgroundColor: "{colors.burgundy-hover}"
+    backgroundColor: "#0a3b3d"
     textColor: "{colors.white}"
   button-primary:
     backgroundColor: "{colors.burgundy}"
@@ -102,7 +107,7 @@ components:
 
 **Creative North Star: “Welcome desk”**
 
-The approved visual world makes the clinic easy to approach: white space, deep pine structure, burgundy appointment controls and real photographs. Lato carries both headings and patient information. Medical skin and hair care lead; cosmetic care sits alongside them.
+The clinic's established identity uses white space, deep pine structure, burgundy appointment controls and real photographs. The homepage now uses the user's requested deep teal and warm coral direction while keeping the same photography, Lato typography, and consultation-first content. Other routes retain their established palette. Medical skin and hair care lead; cosmetic care sits alongside them.
 
 The original logo and photographs establish the clinic's identity. Preserve Dr. Hiteshree Shah's real appearance and credentials. The homepage pairs an introduction with a continuous concern directory; its composition is recorded in `.impeccable/mocks/contract.md`.
 
@@ -114,11 +119,13 @@ Key characteristics:
 
 ## Colors
 
-Burgundy is the primary action color. Pine is the main structural field and heading color; white supplies the dominant page surface. The frontmatter records the actual implementation values.
+Burgundy is the primary action color on existing non-home routes. Pine is their main structural field and heading color; white supplies the dominant page surface. The frontmatter records those values.
 
 Use pale green, secondary and mint on supporting controls or information panels. Muted text remains legible on white. The footer uses its deeper pine with light text. WhatsApp retains its dedicated green and hover state.
 
-**The source-name rule.** Legacy CSS names such as `--clinic-plum` and `--clinic-coral` now map to pine and pale green. Their names do not authorize restoring the previous plum/coral palette. Unused chart and sidebar defaults are not brand colors.
+**Homepage direction.** The homepage scopes its tokens to deep teal (`#0f4a4c`) and warm coral (`#e6a08b`), with a soft coral surface (`#f2ded6`) and warm cream (`#f7f3ee`). This scoped palette is the approved direction for the homepage; it does not change the established colors on treatment and information routes.
+
+**The source-name rule.** Legacy CSS names such as `--clinic-plum` and `--clinic-coral` continue to map to pine and pale green outside the homepage. Their names do not authorize restoring the previous plum/coral palette. The homepage overrides those tokens locally. Unused chart and sidebar defaults are not brand colors.
 
 ## Typography
 
@@ -128,9 +135,9 @@ The display token describes the desktop welcome headline. General H1 elements us
 
 ## Layout
 
-The standard desktop container caps at 1304px with 72px side gutters. At 768–1200px it uses 40px gutters; at 767px and below it uses 20px. Mobile ends at 767px; tablet starts at 768px. The welcome composition caps at 1448px and uses a 1.4807:1 split, with a 34px right inset. Its doctor photograph remains rectangular with a pine caption below it.
+The homepage container caps at 1304px with 24px desktop gutters and 16px mobile gutters. Its welcome composition uses two balanced columns, generous space around the copy, and a rounded real doctor photograph with a teal caption. The trust strip follows the hero. Existing non-home routes retain their route-specific layouts.
 
-At 768–1200px, the welcome split becomes 1.15:1 and actions contract. At 767px and below, introduction, full-width booking/call controls and portrait stack. The welcome heading becomes `clamp(36px, 6.8vw, 50px)`; below 360px it becomes 32px. The directory becomes two columns, then one below 360px. The reception conversation stacks on mobile.
+At 768–1100px, the welcome split and navigation contract. At 767px and below, copy and portrait stack, hero actions become two columns, the category directory uses two columns, and a fixed Call / WhatsApp / Book Now row appears at the bottom of the viewport. The reception conversation stacks on mobile.
 
 The care grid uses four columns, two at 1023px and below, and one at 767px and below. Doctor, process, review, visit and treatment layouts collapse at 1023px. Clinic photographs and footer groups stack at 767px and below. Desktop navigation is replaced by a right-side Sheet through 1100px; the booking control appears from 640px. Header heights are 112px desktop, 92px at intermediate widths and 80px on mobile.
 
@@ -146,11 +153,11 @@ Keep the welcome portrait, reception image and original logo square-cornered. We
 
 ## Components
 
-The welcome booking action is burgundy with white text, paired with an outlined call action. Desktop welcome controls are at least 66px tall; mobile controls are full-width and at least 56px. Shared buttons have a 44px minimum height, 1rem type and 20px horizontal padding. Their primary hover uses primary at 80% opacity; the welcome action has a separate darker hover color.
+The welcome booking action uses deep teal with white text and is paired with WhatsApp. Shared buttons retain a 44px minimum height. The welcome action has a separate darker teal hover color.
 
-The concern directory links directly to `/care/skin`, `/care/hair`, `/care/dermatosurgery-vitiligo` and `/care/cosmetic-laser`. Desktop links are separated by vertical rules; mobile uses bottom rules. Keep both keyboard focus and link destinations usable.
+The concern directory links to `/skin`, `/hair`, the existing combined dermatosurgery and vitiligo category, and `/laser-aesthetics`. Desktop links are separated by vertical rules; mobile uses bottom rules. Keep both keyboard focus and link destinations usable.
 
-Use the existing Base UI Sheet for mobile navigation and Accordion for treatment questions. Focus uses a 3px burgundy outline with a 4px offset; dark sections use pale green. The skip link reveals on keyboard focus. Mobile contact targets remain usable, with the floating WhatsApp text visually hidden below 640px while its accessible name remains.
+Use the existing Base UI Sheet for mobile navigation and Accordion for treatment questions. Focus uses a 3px visible outline with a 4px offset; dark sections use a light contrasting color. The skip link reveals on keyboard focus. Mobile uses the sticky Call / WhatsApp / Book row instead of a floating contact button.
 
 The real doctor image, reception, consultation room, waiting area and original logo are clinic evidence. Welcome derivatives are `/images/doctor-welcome.png` and `/images/reception-welcome.png`; preserve their original source identity and recorded provenance. Keep clinical case captions and outcomes grounded in existing data.
 

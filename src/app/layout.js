@@ -7,6 +7,7 @@ import {
   instagramHref,
 } from "@/data/clinic";
 import { treatments } from "@/data/treatments";
+import StickyContactBar from "@/components/sticky-contact-bar";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -15,8 +16,8 @@ const lato = Lato({
   display: "swap",
 });
 
-const title = "Shreemay Clinic Vadodara | Dr. Hiteshree Shah, Dermatologist";
-const description = "Shreemay Skin Clinic, also searched as Shreemay Clinic Vadodara, offers skin, hair, laser, cosmetic dermatology and vitiligo care by Dr. Hiteshree Shah, MBBS MD.";
+const title = "Dermatologist in Vadodara | Dr. Hiteshree Shah | Shreemay Skin Clinic";
+const description = "Shreemay Skin Clinic, Vadodara – Consult Dr. Hiteshree Shah, MBBS, MD (Dermatology), for skin, hair, vitiligo, laser and aesthetic dermatology care.";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
@@ -116,6 +117,7 @@ export default function RootLayout({ children }) {
     <html lang="en-IN" className={lato.variable}>
       <body>
         {children}
+        <StickyContactBar />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

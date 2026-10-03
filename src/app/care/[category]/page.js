@@ -1,15 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeftIcon, ArrowRightIcon, ArrowUpRightIcon, CalendarDaysIcon, PhoneIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowUpRightIcon, CalendarDaysIcon, PhoneIcon } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import MotionReveal from "@/components/motion-reveal";
+import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/SiteHeader";
 import {
   bookingUrl,
-  clinicAddress,
   clinicName,
-  googleMapsHref,
   phoneDisplay,
   phoneHref,
 } from "@/data/clinic";
@@ -31,7 +30,12 @@ export async function generateMetadata({ params }) {
     title: `${group.title} Care in Vadodara | ${clinicName}`,
     description: `${group.description} Explore treatments and consultation-first next steps at ${clinicName}.`,
     alternates: {
-      canonical: `/care/${group.slug}`,
+      canonical: {
+        skin: "/skin",
+        hair: "/hair",
+        "cosmetic-laser": "/laser-aesthetics",
+        "dermatosurgery-vitiligo": "/dermatosurgery",
+      }[group.slug] || `/care/${group.slug}`,
     },
     openGraph: {
       title: `${group.title} Care in Vadodara | ${clinicName}`,
@@ -58,11 +62,11 @@ export default async function CareCategoryPage({ params }) {
       <main id="top" className="care-category-page" tabIndex="-1">
         <section className="care-category-hero" aria-labelledby="category-heading">
           <div className="page-container care-category-hero-inner">
-            <Link href="/#care" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+            <Link href="/treatments" className={buttonVariants({ variant: "ghost", size: "sm" })}>
               <ArrowLeftIcon data-icon="inline-start" />
-              Back to care categories
+              All treatments
             </Link>
-            <h1 id="category-heading">{group.title} care in Vadodara.</h1>
+            <h1 id="category-heading">{group.title} care in Vadodara</h1>
             <p>{group.description}</p>
           </div>
         </section>
@@ -70,7 +74,7 @@ export default async function CareCategoryPage({ params }) {
         <section className="care-category-section" aria-labelledby="category-treatments-heading">
           <div className="page-container care-category-heading">
             <div>
-              <h2 id="category-treatments-heading">Explore {group.title.toLowerCase()} treatments.</h2>
+              <h2 id="category-treatments-heading">Explore {group.title.toLowerCase()} treatments</h2>
             </div>
             <p>
               Each page explains what the concern may involve, what to discuss during consultation, and how follow-up is planned.
@@ -93,12 +97,27 @@ export default async function CareCategoryPage({ params }) {
             ))}
           </div>
 
+          {group.options?.length > 0 && (
+            <div className="page-container category-options">
+              <div>
+                <h2>{group.optionsTitle || "More care options"}</h2>
+                <p>The dermatologist will explain suitability, preparation, and aftercare before treatment.</p>
+              </div>
+              <ul>
+                {group.options.map((option) => <li key={option.title}>
+                    <h3>{option.href ? <Link href={option.href}>{option.title}</Link> : option.title}</h3>
+                    <p>{option.description}</p>
+                  </li>)}
+              </ul>
+            </div>
+          )}
+
           <div className="page-container care-category-actions">
             <span>Not sure which option fits?</span>
             <div>
               <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
                 <CalendarDaysIcon data-icon="inline-start" />
-                Book a consultation
+                Book an appointment
                 <ArrowUpRightIcon data-icon="inline-end" />
               </a>
               <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}>
@@ -109,21 +128,7 @@ export default async function CareCategoryPage({ params }) {
           </div>
         </section>
       </main>
-
-      <footer className="treatment-footer">
-        <div className="page-container treatment-footer-inner">
-          <Link href="/" className="treatment-footer-brand">{clinicName}</Link>
-          <span>{clinicAddress}</span>
-          <a href={googleMapsHref} target="_blank" rel="noopener noreferrer">
-            Get directions
-            <ArrowUpRightIcon data-icon="inline-end" />
-          </a>
-          <Link href="/" className={buttonVariants({ variant: "link", size: "sm" })}>
-            Return to home
-            <ArrowRightIcon data-icon="inline-end" />
-          </Link>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

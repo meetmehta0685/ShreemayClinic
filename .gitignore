@@ -50,3 +50,6 @@ skills-lock.json
 
 
 .firecrawl/
+
+# Unredacted patient originals must never be included in public assets or commits.
+.codex/private-clinical-originals/
