@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
-import { CalendarDaysIcon, MenuIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
+import { MenuIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -18,20 +18,21 @@ import {
 import { whatsAppHref } from "@/data/clinic";
 
 const navigation = [
-  { label: "Treatments", href: "#care" },
-  { label: "Dr. Hiteshree Shah", href: "#doctor" },
-  { label: "The clinic", href: "#clinic" },
-  { label: "Reviews", href: "#reviews" },
+  { label: "Home", href: "#top", route: "/" },
+  { label: "About us", href: "#doctor", route: "/about-dr-hiteshree-shah" },
+  { label: "Treatments", href: "#care", route: "/treatments" },
+  { label: "Reviews", href: "#reviews", route: "/#reviews" },
+  { label: "Contact us", href: "#visit", route: "/contact" },
 ];
 
-export default function SiteHeader({ bookingUrl, phoneHref }) {
+export default function SiteHeader({ phoneHref }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [activeSection, setActiveSection] = useState(null);
   const routeNavigation = useMemo(
     () => navigation.map((item) => ({
       ...item,
-      href: isHome ? item.href : item.label === "Treatments" ? "/treatments" : "/" + item.href,
+      href: isHome ? item.href : item.route,
     })),
     [isHome]
   );
@@ -117,16 +118,6 @@ export default function SiteHeader({ bookingUrl, phoneHref }) {
               <MessageCircleIcon data-icon="inline-start" />
               WhatsApp
             </a>
-            <a
-              href={bookingUrl}
-              aria-label="Book an appointment"
-              className={buttonVariants({ size: "sm" }) + " header-book"}
-            >
-              <CalendarDaysIcon data-icon="inline-start" />
-              <span className="header-book-desktop">Book an appointment</span>
-              <span className="header-book-mobile">Book</span>
-            </a>
-
             <Sheet>
               <SheetTrigger
                 render={
@@ -156,13 +147,6 @@ export default function SiteHeader({ bookingUrl, phoneHref }) {
                   >
                     <MessageCircleIcon data-icon="inline-start" />
                     WhatsApp us
-                  </SheetClose>
-                  <SheetClose
-                    nativeButton={false}
-                    render={<a href={bookingUrl} className={buttonVariants({ size: "lg" })} />}
-                  >
-                    <CalendarDaysIcon data-icon="inline-start" />
-                    Book an appointment
                   </SheetClose>
                   <SheetClose
                     nativeButton={false}

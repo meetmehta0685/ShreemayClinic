@@ -24,6 +24,7 @@ import {
   clinicHours,
   clinicName,
   googleMapsHref,
+  mapEmbedUrl,
   phoneDisplay,
   phoneHref,
   whatsAppHref,
@@ -52,7 +53,7 @@ const reviews = [
 ];
 
 const concernCards = [
-  { title: "Acne & pimples", detail: "Understand active acne and discuss suitable next steps.", href: "/treatments/acne-treatment" },
+  { title: "Acne & acne scars", detail: "Understand active acne and discuss suitable next steps for marks or scars.", href: "/treatments/acne-treatment" },
   { title: "Pigmentation & melasma", detail: "Assessment for uneven tone, melasma, and dark spots.", href: "/pigmentation-melasma" },
   { title: "Hair fall", detail: "Review the pattern, scalp, history, and treatment options.", href: "/hair-loss" },
   { title: "Dandruff & scalp problems", detail: "Discuss itching, scaling, or other scalp concerns.", href: "/hair" },
@@ -65,20 +66,16 @@ const concernCards = [
 
 const whyItems = [
   {
-    title: "Doctor-led care",
-    body: "Every care plan begins with a consultation and clinical assessment.",
+    title: "US FDA-approved technology",
+    body: "Technology used in care is US FDA-approved, with suitability discussed during your consultation.",
   },
   {
-    title: "Personalised options",
-    body: "Recommendations reflect your concern, skin or hair history, and individual needs.",
+    title: "Personalised care",
+    body: "Care plans reflect your concern, skin or hair history, and individual needs.",
   },
   {
-    title: "Clear communication",
-    body: "Understand the diagnosis, available options, and follow-up before you begin.",
-  },
-  {
-    title: "A comfortable clinic",
-    body: "Meet the team in a calm, professional setting in Vadodara.",
+    title: "Precise information and clear explanations",
+    body: "Understand the concern, the assessment, and the next steps in plain language.",
   },
 ];
 
@@ -96,7 +93,7 @@ const homepageFaqs = [
   },
   {
     question: "What are the clinic timings?",
-    answer: "Monday to Saturday, 10 AM–2 PM and 5 PM–8 PM. The clinic is closed on Sunday.",
+    answer: "Monday to Saturday, 11 AM–2 PM and 5 PM–8 PM. The clinic is closed on Sunday.",
   },
   {
     question: "Where is Shreemay Skin Clinic?",
@@ -138,7 +135,7 @@ const clinicPhotos = [
 export default function Home() {
   return (
     <div className="home-page">
-      <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
+      <SiteHeader phoneHref={phoneHref} />
 
       <main id="top" tabIndex="-1">
         <section className="welcome" aria-labelledby="hero-heading">
@@ -313,9 +310,6 @@ export default function Home() {
               </div>
 
               <div className="doctor-actions">
-                <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
-                  Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
-                </a>
                 <Link href="/about-dr-hiteshree-shah" className={buttonVariants({ variant: "link", size: "lg" })}>
                   View complete profile<ArrowUpRightIcon data-icon="inline-end" />
                 </Link>
@@ -327,8 +321,8 @@ export default function Home() {
         <section className="why-section" aria-labelledby="why-heading">
           <div className="page-container why-layout">
             <div className="why-intro">
-              <h2 id="why-heading">Why choose Shreemay?</h2>
-              <p>Care begins with a conversation, a clear assessment, and a plan that fits the person in front of the doctor.</p>
+              <h2 id="why-heading">Why choose us?</h2>
+              <p>Doctor-led care with approved technology, a plan shaped around you, and a clear explanation of your concern.</p>
             </div>
             <div className="why-list">
               {whyItems.map((item) => (
@@ -437,13 +431,10 @@ export default function Home() {
         <section id="visit" className="visit-section final-cta" aria-labelledby="visit-heading">
           <div className="page-container visit-layout">
             <div className="visit-copy">
-              <h2 id="visit-heading">Book your visit</h2>
-              <p>Book an appointment with Dr. Hiteshree Shah at Shreemay Skin Clinic, Vadodara.</p>
+              <h2 id="visit-heading">Visit Shreemay Skin Clinic</h2>
+              <p>Contact Dr. Hiteshree Shah’s clinic in Vadodara by phone or WhatsApp.</p>
 
               <div className="visit-actions">
-                <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
-                  <CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
-                </a>
                 <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}>
                   <MessageCircleIcon data-icon="inline-start" />WhatsApp us
                 </a>
@@ -461,7 +452,13 @@ export default function Home() {
             </div>
 
             <MotionReveal className="map-frame" preset="clip" delay={0.08} amount={0.1}>
-              <Image src="/images/consult-desk.png" alt="Consultation room at Shreemay Skin Clinic" width={765} height={1020} sizes="(max-width: 1023px) 100vw, 45vw" />
+              <iframe
+                src={mapEmbedUrl}
+                title="Google Maps location for Shreemay Skin Clinic in Vadodara"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
               <div className="directions-caption"><h3>Visit us near Akshar Chowk</h3><p>Shop No. 8, 1st Floor, Ananya Complex, O.P. Road, Vadodara.</p></div>
               <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className="map-link">
                 <MapPinIcon aria-hidden="true" />Open in Google Maps<ArrowUpRightIcon aria-hidden="true" />

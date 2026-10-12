@@ -38,6 +38,11 @@ export const metadata = {
     "laser hair removal Vadodara",
     "acne treatment Vadodara",
     "Dr Hiteshree Shah",
+    "Shreemay Skin Clinic by Dr Hiteshree Shah",
+    "best female skin specialist",
+    "acne specialist",
+    "hair loss expert",
+    "vitiligo surgeon",
   ],
   openGraph: {
     title,
@@ -91,7 +96,7 @@ const structuredData = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "10:00",
+      opens: "11:00",
       closes: "14:00",
     },
     {

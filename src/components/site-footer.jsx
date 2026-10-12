@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import {
-  bookingUrl,
   clinicAddress,
   clinicHours,
   clinicName,
@@ -29,11 +28,11 @@ export default function SiteFooter() {
         <div className="footer-links">
           <div>
             <span className="footer-label">Explore</span>
+            <Link href="/">Home</Link>
+            <Link href="/about-dr-hiteshree-shah">About us</Link>
             <Link href="/treatments">Treatments</Link>
-            <Link href="/about-dr-hiteshree-shah">Dr. Hiteshree Shah</Link>
-            <Link href="/clinic">The clinic</Link>
             <Link href="/#reviews">Reviews</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/contact">Contact us</Link>
           </div>
           <div>
             <span className="footer-label">Contact</span>
@@ -53,7 +52,6 @@ export default function SiteFooter() {
       <div className="page-container footer-bottom">
         <span>Shreemay Skin Clinic · Vadodara</span>
         <div>
-          <a href={bookingUrl}>Book an appointment</a>
           <a href={googleMapsHref} target="_blank" rel="noopener noreferrer">Google Maps</a>
         </div>
       </div>

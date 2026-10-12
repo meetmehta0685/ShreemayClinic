@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import BookingForm from "@/components/booking-form";
-import { bookingUrl, clinicHours, clinicName, doctorName, phoneHref, phoneDisplay } from "@/data/clinic";
+import { clinicHours, clinicName, doctorName, phoneHref, phoneDisplay } from "@/data/clinic";
 
 export const metadata = {
   title: "Book a consultation | Shreemay Skin Clinic",
@@ -11,7 +13,7 @@ export const metadata = {
 export default function BookingPage() {
   return (
     <>
-      <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
+      <SiteHeader phoneHref={phoneHref} />
       <main id="top" className="booking-page">
         <div className="page-container booking-layout">
           <section className="booking-intro" aria-labelledby="booking-title">
@@ -22,7 +24,14 @@ export default function BookingPage() {
             </p>
 
             <div className="booking-doctor">
-              <span className="booking-doctor-mark" aria-hidden="true">SH</span>
+              <Image
+                className="booking-doctor-image"
+                src="/images/dr-hiteshree-iadvl-optimized.jpg"
+                alt="Dr. Hiteshree Shah"
+                width={1000}
+                height={936}
+                sizes="52px"
+              />
               <div>
                 <strong>{doctorName}</strong>
                 <span>Dermatologist</span>

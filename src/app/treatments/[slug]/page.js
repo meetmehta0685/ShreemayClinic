@@ -3,9 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowUpRightIcon,
-  CalendarDaysIcon,
   CheckIcon,
   MessageCircleIcon,
   PhoneIcon,
@@ -27,7 +24,6 @@ import MotionReveal from "@/components/motion-reveal";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/SiteHeader";
 import {
-  bookingUrl,
   clinicAddress,
   clinicName,
   doctorName,
@@ -75,7 +71,7 @@ export default async function TreatmentPage({ params }) {
 
   return (
     <>
-      <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
+      <SiteHeader phoneHref={phoneHref} />
 
       <main id="top" className="treatment-page" tabIndex="-1">
         <section className="treatment-hero" aria-labelledby="treatment-heading">
@@ -88,14 +84,6 @@ export default async function TreatmentPage({ params }) {
               <h1 id="treatment-heading">{treatment.title}</h1>
               <p className="treatment-lede">{treatment.description}</p>
               <div className="treatment-actions">
-                <a
-                  href={bookingUrl}
-                  className={buttonVariants({ size: "lg" })}
-                >
-                  <CalendarDaysIcon data-icon="inline-start" />
-                  Book an appointment
-                  <ArrowUpRightIcon data-icon="inline-end" />
-                </a>
                 <a
                   href={whatsAppHref}
                   target="_blank"
@@ -248,13 +236,9 @@ export default async function TreatmentPage({ params }) {
           <div className="page-container treatment-next-inner">
             <div>
               <h2 id="next-heading">Ready to take the next step?</h2>
-              <p>Book online, call the clinic, or ask your first question on WhatsApp.</p>
+              <p>Call the clinic or ask your first question on WhatsApp.</p>
             </div>
             <div className="treatment-next-actions">
-              <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
-                Book an appointment
-                <ArrowRightIcon data-icon="inline-end" />
-              </a>
               <Link href="/treatments" className={buttonVariants({ variant: "outline", size: "lg" })}>
                 Explore treatments
               </Link>

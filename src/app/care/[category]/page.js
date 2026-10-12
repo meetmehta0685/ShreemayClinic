@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeftIcon, ArrowUpRightIcon, CalendarDaysIcon, PhoneIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowUpRightIcon, PhoneIcon } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import MotionReveal from "@/components/motion-reveal";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/SiteHeader";
 import {
-  bookingUrl,
   clinicName,
   phoneDisplay,
   phoneHref,
@@ -57,7 +56,7 @@ export default async function CareCategoryPage({ params }) {
 
   return (
     <>
-      <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
+      <SiteHeader phoneHref={phoneHref} />
 
       <main id="top" className="care-category-page" tabIndex="-1">
         <section className="care-category-hero" aria-labelledby="category-heading">
@@ -115,11 +114,6 @@ export default async function CareCategoryPage({ params }) {
           <div className="page-container care-category-actions">
             <span>Not sure which option fits?</span>
             <div>
-              <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
-                <CalendarDaysIcon data-icon="inline-start" />
-                Book an appointment
-                <ArrowUpRightIcon data-icon="inline-end" />
-              </a>
               <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}>
                 <PhoneIcon data-icon="inline-start" />
                 Call {phoneDisplay}

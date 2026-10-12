@@ -4,7 +4,7 @@ import { ArrowUpRightIcon } from "lucide-react";
 
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/SiteHeader";
-import { bookingUrl, phoneHref } from "@/data/clinic";
+import { phoneHref } from "@/data/clinic";
 import { serviceGroups, treatments } from "@/data/treatments";
 
 const serviceGroupPaths = {
@@ -23,7 +23,7 @@ export const metadata = {
 export default function TreatmentsPage() {
   return (
     <>
-      <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
+      <SiteHeader phoneHref={phoneHref} />
       <main id="top" className="content-page" tabIndex="-1">
         <section className="content-hero">
           <div className="page-container content-hero-inner">

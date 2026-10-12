@@ -1,17 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeftIcon, ArrowUpRightIcon, CalendarDaysIcon, MapPinIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowUpRightIcon, MapPinIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/SiteHeader";
 import {
-  bookingUrl,
   clinicAddress,
   clinicHours,
   clinicName,
   googleMapsHref,
+  mapEmbedUrl,
   phoneDisplay,
   phoneHref,
   whatsAppHref,
@@ -68,8 +68,8 @@ export async function generateMetadata({ params }) {
       description: "Find Shreemay Skin Clinic at Ananya Complex, near Akshar Chowk, O.P. Road, Vadodara. View clinic photos, hours, and directions.",
     },
     contact: {
-      title: "Contact Shreemay Skin Clinic | Book an Appointment",
-      description: "Call, WhatsApp, or book an appointment with Shreemay Skin Clinic, Akshar Chowk, Vadodara.",
+      title: "Contact Shreemay Skin Clinic | Vadodara",
+      description: "Call or WhatsApp Shreemay Skin Clinic, Akshar Chowk, Vadodara, to ask about a consultation.",
     },
   };
 
@@ -116,10 +116,11 @@ function CategoryPage({ group }) {
             </div>
           )}
           <div className="content-cta-row">
-            <span>Not sure which care area fits?</span>
-            <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
-              <CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
-            </a>
+            <span>Not sure which care area fits? Talk with the clinic.</span>
+            <div className="content-hero-actions">
+              <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}><PhoneIcon data-icon="inline-start" />Call {phoneDisplay}</a>
+              <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}><MessageCircleIcon data-icon="inline-start" />WhatsApp</a>
+            </div>
           </div>
         </div>
       </section>
@@ -155,7 +156,6 @@ function AboutDoctorPage() {
               <div><dt>Advanced focus</dt><dd>Observership in dermatosurgery</dd></div>
               <div><dt>Professional memberships</dt><dd>ACSI and IADVL</dd></div>
             </dl>
-            <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>Book an appointment<ArrowUpRightIcon data-icon="inline-end" /></a>
           </div>
         </div>
         <div className="page-container profile-additional">
@@ -206,10 +206,9 @@ function ContactPage() {
       <section className="content-hero">
         <div className="page-container content-hero-inner">
 
-          <h1>Book an appointment or get in touch</h1>
-          <p>Call or WhatsApp the clinic, or book a 20-minute consultation online.</p>
+          <h1>Contact the clinic</h1>
+          <p>Call or WhatsApp the clinic with questions about a consultation.</p>
           <div className="content-hero-actions">
-            <a href={bookingUrl} className={buttonVariants({ variant: "secondary", size: "lg" })}><CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" /></a>
             <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}><PhoneIcon data-icon="inline-start" />Call {phoneDisplay}</a>
             <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "outline", size: "lg" })}><MessageCircleIcon data-icon="inline-start" />WhatsApp</a>
           </div>
@@ -223,7 +222,16 @@ function ContactPage() {
             {clinicHours.map((item) => <div key={item.days}><span>{item.days}</span><strong>{item.hours}</strong></div>)}
             <a className="text-link" href={googleMapsHref} target="_blank" rel="noopener noreferrer">Open directions in Google Maps<ArrowUpRightIcon aria-hidden="true" /></a>
           </div>
-          <div className="contact-map"><Image src="/images/signage.jpg" alt="Shreemay Skin Clinic entrance and signage at Ananya Complex" width={1024} height={894} sizes="(max-width: 767px) 100vw, 55vw" /><a href={googleMapsHref} target="_blank" rel="noopener noreferrer">Open in Google Maps<ArrowUpRightIcon aria-hidden="true" /></a></div>
+          <div className="contact-map">
+            <iframe
+              src={mapEmbedUrl}
+              title="Google Maps location for Shreemay Skin Clinic in Vadodara"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a href={googleMapsHref} target="_blank" rel="noopener noreferrer">Open in Google Maps<ArrowUpRightIcon aria-hidden="true" /></a>
+          </div>
         </div>
       </section>
     </>
@@ -246,7 +254,7 @@ export default async function RootContentPage({ params }) {
 
   return (
     <>
-      <SiteHeader bookingUrl={bookingUrl} phoneHref={phoneHref} />
+      <SiteHeader phoneHref={phoneHref} />
       <main id="top" className="content-page" tabIndex="-1">{content}</main>
       <SiteFooter />
     </>

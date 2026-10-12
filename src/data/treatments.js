@@ -10,7 +10,7 @@ export const treatments = [
   {
     slug: "acne-treatment",
     title: "Acne Treatment in Vadodara",
-    shortTitle: "Acne & Pimples",
+    shortTitle: "Acne & Acne Scars",
     category: "Skin",
     group: "Clinical dermatology",
     description:
@@ -591,26 +591,185 @@ export const treatments = [
     ],
   },
   {
+    slug: "ingrown-nail-treatment",
+    title: "Ingrown Nail Treatment in Vadodara",
+    shortTitle: "Ingrown Nail Care",
+    category: "Dermatosurgery",
+    group: "Dermatosurgery & vitiligo",
+    description:
+      "Assessment and treatment planning for painful or inflamed ingrown nails.",
+    metaDescription:
+      "Consult Dr. Hiteshree Shah in Vadodara for an assessment of ingrown nails and suitable next steps.",
+    overview:
+      "An ingrown nail can cause tenderness, swelling, or drainage. Examination helps assess the nail and surrounding skin and whether non-procedural care or a procedure is appropriate.",
+    consultation:
+      "Mention when it started, whether it has happened before, and any pain, redness, swelling, or drainage. Share details of earlier treatment.",
+    image: nailAssessmentImage,
+    imageAlt: "Dermatologist examining a fingernail with a dermatoscope",
+    imageLabel: "Start with a nail assessment",
+    highlights: [
+      {
+        title: "Nail and skin assessment",
+        body: "The doctor checks the nail edge and surrounding skin and asks about recurrence, discomfort, and previous care.",
+      },
+      {
+        title: "Cause and severity",
+        body: "The pattern, footwear, nail-trimming habits, and inflammation can all inform the assessment.",
+      },
+      {
+        title: "Treatment options",
+        body: "Discuss suitable care options, including whether a procedure is appropriate, before making a plan.",
+      },
+      {
+        title: "Aftercare and follow-up",
+        body: "Get guidance on protecting the area and when to return for review.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Will every ingrown nail need a procedure?",
+        answer:
+          "Not necessarily. The doctor will examine the nail and surrounding skin before discussing suitable options.",
+      },
+      {
+        question: "What should I mention at the appointment?",
+        answer:
+          "Share when the problem began, whether it has recurred, and whether you have pain, redness, swelling, or drainage.",
+      },
+      {
+        question: "Should I cut the nail corner before visiting?",
+        answer:
+          "Avoid digging into or cutting the nail corner yourself. The doctor can assess it and explain what to do next.",
+      },
+    ],
+  },
+  {
+    slug: "earlobe-repair-lobuloplasty",
+    title: "Earlobe Repair (Lobuloplasty) in Vadodara",
+    shortTitle: "Earlobe Repair (Lobuloplasty)",
+    category: "Dermatosurgery",
+    group: "Dermatosurgery & vitiligo",
+    description:
+      "Consultation for stretched or split earlobes and repair planning where appropriate.",
+    metaDescription:
+      "Discuss earlobe repair or lobuloplasty in Vadodara with Dr. Hiteshree Shah after an individual assessment.",
+    overview:
+      "A stretched or split earlobe can be assessed to understand its shape, skin condition, and repair options. The consultation covers suitability, the procedure, healing, and aftercare before you decide.",
+    consultation:
+      "Share how the earlobe changed, whether it has been repaired before, and any health or healing concerns relevant to a procedure.",
+    image: lesionAssessmentImage,
+    imageAlt: "Dermatologist examining a skin area before discussing a procedure",
+    imageLabel: "Discuss repair options",
+    highlights: [
+      {
+        title: "Earlobe assessment",
+        body: "The doctor examines the earlobe and asks about stretching, a split, previous procedures, and your goals.",
+      },
+      {
+        title: "Repair planning",
+        body: "If lobuloplasty is suitable, the doctor explains the proposed approach and what the visit involves.",
+      },
+      {
+        title: "Healing expectations",
+        body: "Discuss healing, possible marks, and when earrings or other pressure on the area may need to be avoided.",
+      },
+      {
+        title: "Aftercare",
+        body: "Receive instructions for caring for the area and guidance on when follow-up may be useful.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What can be discussed at an earlobe repair consultation?",
+        answer:
+          "The doctor can assess a stretched or split earlobe, discuss whether repair is appropriate, and explain the procedure and aftercare.",
+      },
+      {
+        question: "Will the repair leave a visible mark?",
+        answer:
+          "Healing and scar appearance vary. The doctor can discuss the area, likely healing, and relevant risks before you decide.",
+      },
+      {
+        question: "Can a previously repaired earlobe be assessed?",
+        answer:
+          "Yes. Share when it was repaired and any changes or concerns so the doctor can assess the current tissue.",
+      },
+    ],
+  },
+  {
+    slug: "xanthelasma-excision",
+    title: "Xanthelasma Excision in Vadodara",
+    shortTitle: "Xanthelasma Excision",
+    category: "Dermatosurgery",
+    group: "Dermatosurgery & vitiligo",
+    description:
+      "Assessment of xanthelasma around the eyes and discussion of whether excision is appropriate.",
+    metaDescription:
+      "Consult Dr. Hiteshree Shah in Vadodara for an assessment and discussion of xanthelasma excision options.",
+    overview:
+      "Marks near the eyelids should be assessed before treatment is considered. The doctor examines the area and discusses whether excision is suitable, including the location, healing, and aftercare.",
+    consultation:
+      "Share when the marks appeared, whether they have changed, and any previous procedures or relevant medical history.",
+    image: lesionAssessmentImage,
+    imageAlt: "Dermatologist examining a pigmented skin mark with a dermatoscope",
+    imageLabel: "Assess the area first",
+    highlights: [
+      {
+        title: "Careful examination",
+        body: "The doctor examines the marks and their position around the eyes before discussing treatment options.",
+      },
+      {
+        title: "Suitability discussion",
+        body: "Excision is considered only after an individual assessment of the area and your health history.",
+      },
+      {
+        title: "Healing near the eyes",
+        body: "The location means aftercare and possible skin changes should be discussed before a procedure.",
+      },
+      {
+        title: "Next steps",
+        body: "The doctor explains preparation, aftercare, and follow-up so you can decide with clear information.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does xanthelasma need to be examined before excision?",
+        answer:
+          "Yes. The doctor should assess the marks and their location before discussing whether excision is suitable.",
+      },
+      {
+        question: "Can every mark near the eyelid be excised?",
+        answer:
+          "No. The appropriate next step depends on an examination, the location, and your medical history.",
+      },
+      {
+        question: "What should I discuss before treatment?",
+        answer:
+          "Ask about suitability, the procedure, healing near the eyes, possible skin changes, and aftercare.",
+      },
+    ],
+  },
+  {
     slug: "cyst-mole-removal",
     title: "Cyst & Mole Removal Consultation in Vadodara",
     shortTitle: "Cyst & Mole Removal",
     category: "Dermatosurgery",
     group: "Dermatosurgery & vitiligo",
     description:
-      "Assessment of cysts, moles, and other benign-appearing lesions before a removal decision is made.",
+      "Assessment of moles, sebaceous cysts, and mucous cysts before discussing suitable removal options.",
     metaDescription:
-      "Consultation in Vadodara for assessment and removal planning for cysts, moles, and other skin lesions.",
+      "Consultation in Vadodara for mole removal and assessment of sebaceous or mucous cysts before treatment planning.",
     overview:
-      "A lesion needs an examination before removal is planned. The doctor considers its appearance, history, location, and any change in size, colour, bleeding, or symptoms.",
+      "A mole or cyst needs an examination before removal is planned. The doctor considers its appearance, history, location, and any change in size, colour, bleeding, or symptoms.",
     consultation:
-      "Note when the lesion appeared and whether it has changed. Do not attempt to squeeze, cut, or remove it before examination.",
+      "Note when the mole or cyst appeared and whether it has changed. Do not attempt to squeeze, cut, or remove it before examination.",
     image: lesionAssessmentImage,
     imageAlt: "Dermatologist examining a pigmented skin mark with a dermatoscope",
     imageLabel: "Start with an examination",
     highlights: [
       {
-        title: "In-person assessment",
-        body: "The doctor examines the lesion and asks about changes, symptoms, and earlier treatment before discussing removal.",
+        title: "Mole and cyst assessment",
+        body: "The doctor examines moles and cysts, including sebaceous or mucous cysts, and asks about changes, symptoms, and earlier treatment.",
       },
       {
         title: "Location and healing",
@@ -627,7 +786,7 @@ export const treatments = [
     ],
     faqs: [
       {
-        question: "Can a mole be removed without an examination?",
+        question: "Can a mole or cyst be removed without an examination?",
         answer:
           "No. An in-person examination should come first so the doctor can decide what the lesion may be and whether removal is appropriate.",
       },
@@ -734,10 +893,17 @@ export const serviceGroups = [
     slug: "dermatosurgery-vitiligo",
     title: "Dermatosurgery",
     eyebrow: "Dermatosurgery",
-    description: "Doctor-led assessment for lesions, scars, vitiligo, and surgical conversations where appropriate.",
+    description: "Doctor-led assessment for skin lesions, ingrown nails, earlobe repair, scars, and vitiligo.",
     image: "/images/treatments/lesion-assessment.jpg",
     imageAlt: "Dermatologist examining a skin mark with a dermatoscope",
-    slugs: ["vitiligo-treatment", "scar-revision", "cyst-mole-removal"],
+    slugs: [
+      "vitiligo-treatment",
+      "scar-revision",
+      "ingrown-nail-treatment",
+      "earlobe-repair-lobuloplasty",
+      "cyst-mole-removal",
+      "xanthelasma-excision",
+    ],
   },
 ];
 
