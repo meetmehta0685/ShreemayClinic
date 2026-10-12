@@ -11,7 +11,10 @@ import {
 } from "@/data/clinic";
 
 export default function StickyContactBar() {
-  const isHome = usePathname() === "/";
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <nav
@@ -27,7 +30,7 @@ export default function StickyContactBar() {
         <MessageCircleIcon aria-hidden="true" />
         <span>WhatsApp</span>
       </a>
-      <a className="sticky-book" aria-label="Book an appointment" href={bookingUrl} target="_blank" rel="noopener noreferrer">
+      <a className="sticky-book" aria-label="Book an appointment" href={bookingUrl}>
         <CalendarDaysIcon aria-hidden="true" />
         <span>Book now</span>
       </a>

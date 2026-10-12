@@ -90,8 +90,6 @@ export default async function TreatmentPage({ params }) {
               <div className="treatment-actions">
                 <a
                   href={bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className={buttonVariants({ size: "lg" })}
                 >
                   <CalendarDaysIcon data-icon="inline-start" />
@@ -253,7 +251,7 @@ export default async function TreatmentPage({ params }) {
               <p>Book online, call the clinic, or ask your first question on WhatsApp.</p>
             </div>
             <div className="treatment-next-actions">
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
+              <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
                 Book an appointment
                 <ArrowRightIcon data-icon="inline-end" />
               </a>

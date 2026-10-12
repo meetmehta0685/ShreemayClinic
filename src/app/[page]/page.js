@@ -117,7 +117,7 @@ function CategoryPage({ group }) {
           )}
           <div className="content-cta-row">
             <span>Not sure which care area fits?</span>
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
+            <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
               <CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
             </a>
           </div>
@@ -155,7 +155,7 @@ function AboutDoctorPage() {
               <div><dt>Advanced focus</dt><dd>Observership in dermatosurgery</dd></div>
               <div><dt>Professional memberships</dt><dd>ACSI and IADVL</dd></div>
             </dl>
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>Book an appointment<ArrowUpRightIcon data-icon="inline-end" /></a>
+            <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>Book an appointment<ArrowUpRightIcon data-icon="inline-end" /></a>
           </div>
         </div>
         <div className="page-container profile-additional">
@@ -207,9 +207,9 @@ function ContactPage() {
         <div className="page-container content-hero-inner">
 
           <h1>Book an appointment or get in touch</h1>
-          <p>Call or WhatsApp the clinic, or use the online appointment calendar.</p>
+          <p>Call or WhatsApp the clinic, or book a 20-minute consultation online.</p>
           <div className="content-hero-actions">
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}><CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" /></a>
+            <a href={bookingUrl} className={buttonVariants({ variant: "secondary", size: "lg" })}><CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" /></a>
             <a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })}><PhoneIcon data-icon="inline-start" />Call {phoneDisplay}</a>
             <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "outline", size: "lg" })}><MessageCircleIcon data-icon="inline-start" />WhatsApp</a>
           </div>

@@ -1,7 +1,7 @@
 export const clinicName = "Shreemay Skin Clinic";
 export const doctorName = "Dr. Hiteshree Shah";
 
-export const bookingUrl = "https://booking.appointy.com/en-US/hite123/bookings/calendar";
+export const bookingUrl = "/book";
 export const phoneHref = "tel:+917861951664";
 export const phoneDisplay = "78619 51664";
 export const whatsAppHref =

@@ -53,7 +53,7 @@ export default function SiteFooter() {
       <div className="page-container footer-bottom">
         <span>Shreemay Skin Clinic · Vadodara</span>
         <div>
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Book an appointment</a>
+          <a href={bookingUrl}>Book an appointment</a>
           <a href={googleMapsHref} target="_blank" rel="noopener noreferrer">Google Maps</a>
         </div>
       </div>

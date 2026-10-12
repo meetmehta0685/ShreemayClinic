@@ -92,7 +92,7 @@ const consultationSteps = [
 const homepageFaqs = [
   {
     question: "Do I need an appointment before visiting?",
-    answer: "Booking online is available through the clinic’s appointment calendar. You can also call or WhatsApp the clinic if you need help planning your visit.",
+    answer: "You can book a 20-minute consultation online and receive an email confirmation. You can also call or WhatsApp the clinic if you need help planning your visit.",
   },
   {
     question: "What are the clinic timings?",
@@ -148,7 +148,7 @@ export default function Home() {
               Consult Dr. Hiteshree Shah, MBBS, MD (Dermatology), for personalised care for skin, hair, vitiligo, and aesthetic concerns.
             </p>
             <div className="welcome-actions">
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="welcome-book">
+              <a href={bookingUrl} className="welcome-book">
                 <CalendarDaysIcon aria-hidden="true" />
                 Book an appointment
                 <ArrowUpRightIcon aria-hidden="true" />
@@ -313,7 +313,7 @@ export default function Home() {
               </div>
 
               <div className="doctor-actions">
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
+                <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
                   Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
                 </a>
                 <Link href="/about-dr-hiteshree-shah" className={buttonVariants({ variant: "link", size: "lg" })}>
@@ -441,7 +441,7 @@ export default function Home() {
               <p>Book an appointment with Dr. Hiteshree Shah at Shreemay Skin Clinic, Vadodara.</p>
 
               <div className="visit-actions">
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
+                <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
                   <CalendarDaysIcon data-icon="inline-start" />Book an appointment<ArrowUpRightIcon data-icon="inline-end" />
                 </a>
                 <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}>

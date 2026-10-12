@@ -165,7 +165,7 @@ Instagram education uses topic links to the original posts when clinic-owned vid
 
 The directions panel uses the original `/images/signage.jpg` photograph, a visible address caption and an external Google Maps link. It has no embedded-map dependency. Its photo is 340px tall on desktop and uses a 1.2 aspect ratio on mobile; the link stays in normal document flow below the caption.
 
-Booking and contact destinations come from `src/data/clinic.js`: Appointy calendar, telephone, WhatsApp, Google Maps and the clinic Instagram profile. Reuse those constants; styling must not change their destinations.
+Booking and contact destinations come from `src/data/clinic.js`: the site's own `/book` flow, telephone, WhatsApp, Google Maps and the clinic Instagram profile. Reuse those constants; the booking platform is managed by the clinic site, not Appointy.
 
 Only the welcome portrait has an entrance reveal: a small clip change over 650ms with `cubic-bezier(.16,1,.3,1)`. The shared MotionReveal wrapper is static. Hover changes remain small. Reduced-motion disables smooth scrolling and reduces animation/transition duration.
 

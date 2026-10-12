@@ -115,7 +115,7 @@ export default async function CareCategoryPage({ params }) {
           <div className="page-container care-category-actions">
             <span>Not sure which option fits?</span>
             <div>
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })}>
+              <a href={bookingUrl} className={buttonVariants({ size: "lg" })}>
                 <CalendarDaysIcon data-icon="inline-start" />
                 Book an appointment
                 <ArrowUpRightIcon data-icon="inline-end" />

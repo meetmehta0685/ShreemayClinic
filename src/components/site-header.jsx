@@ -119,8 +119,6 @@ export default function SiteHeader({ bookingUrl, phoneHref }) {
             </a>
             <a
               href={bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               aria-label="Book an appointment"
               className={buttonVariants({ size: "sm" }) + " header-book"}
             >
@@ -161,7 +159,7 @@ export default function SiteHeader({ bookingUrl, phoneHref }) {
                   </SheetClose>
                   <SheetClose
                     nativeButton={false}
-                    render={<a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "lg" })} />}
+                    render={<a href={bookingUrl} className={buttonVariants({ size: "lg" })} />}
                   >
                     <CalendarDaysIcon data-icon="inline-start" />
                     Book an appointment
