@@ -1,6 +1,6 @@
 ---
 name: Shreemay Skin Clinic
-description: Real clinic evidence, with a home-only deep teal and warm coral direction.
+description: Real clinic evidence, with a site-wide deep teal and warm coral direction.
 colors:
   white: "#ffffff"
   pine-text: "#173f35"

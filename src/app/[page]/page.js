@@ -5,11 +5,12 @@ import { ArrowLeftIcon, ArrowUpRightIcon, MapPinIcon, MessageCircleIcon, PhoneIc
 
 import { buttonVariants } from "@/components/ui/button";
 import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/SiteHeader";
+import SiteHeader from "@/components/site-header";
 import {
   clinicAddress,
   clinicHours,
   clinicName,
+  doctorProfilePhoto,
   googleMapsHref,
   mapEmbedUrl,
   phoneDisplay,
@@ -141,7 +142,7 @@ function AboutDoctorPage() {
       <section className="content-section">
         <div className="page-container profile-layout">
           <figure className="profile-photo">
-            <Image src="/images/dr-hiteshree-iadvl-optimized.jpg" alt="Dr. Hiteshree Shah at Shreemay Skin Clinic" width={1000} height={936} sizes="(max-width: 767px) 100vw, 40vw" />
+            <Image src={doctorProfilePhoto.src} alt="Dr. Hiteshree Shah at Shreemay Skin Clinic" width={doctorProfilePhoto.width} height={doctorProfilePhoto.height} sizes="(max-width: 767px) 100vw, 40vw" />
             <figcaption>Dr. Hiteshree Shah · Dermatologist</figcaption>
           </figure>
           <div className="profile-copy">

@@ -2,27 +2,37 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRightIcon,
-  CalendarDaysIcon,
   Clock3Icon,
   ExternalLinkIcon,
   MapPinIcon,
   MessageCircleIcon,
   PhoneIcon,
+  ContrastIcon,
+  ScanFaceIcon,
+  ShieldPlusIcon,
+  SnowflakeIcon,
+  SparklesIcon,
   StarIcon,
+  StethoscopeIcon,
+  SunIcon,
+  WavesIcon,
+  ZapIcon,
 } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import BeforeAfterGallery from "@/components/BeforeAfterGallery";
-import InstagramReels from "@/components/InstagramReels";
+import BeforeAfterGallery from "@/components/before-after-gallery";
+import BookingButton from "@/components/booking-button";
+import InstagramReels from "@/components/instagram-reels";
 import MotionReveal from "@/components/motion-reveal";
 import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/SiteHeader";
+import SiteHeader from "@/components/site-header";
 import {
-  bookingUrl,
+  bookingAction,
   clinicAddress,
   clinicHours,
   clinicName,
+  doctorProfilePhoto,
   googleMapsHref,
   mapEmbedUrl,
   phoneDisplay,
@@ -30,6 +40,7 @@ import {
   whatsAppHref,
 } from "@/data/clinic";
 import { caseStudies } from "@/data/case-studies";
+import doctorWelcomeImage from "../../public/images/doctor-welcome.png";
 
 const reviews = [
   {
@@ -53,30 +64,15 @@ const reviews = [
 ];
 
 const concernCards = [
-  { title: "Acne & acne scars", detail: "Understand active acne and discuss suitable next steps for marks or scars.", href: "/treatments/acne-treatment" },
-  { title: "Pigmentation & melasma", detail: "Assessment for uneven tone, melasma, and dark spots.", href: "/pigmentation-melasma" },
-  { title: "Hair fall", detail: "Review the pattern, scalp, history, and treatment options.", href: "/hair-loss" },
-  { title: "Dandruff & scalp problems", detail: "Discuss itching, scaling, or other scalp concerns.", href: "/hair" },
-  { title: "Vitiligo", detail: "Assessment and individual follow-up planning.", href: "/treatments/vitiligo-treatment" },
-  { title: "Skin infections", detail: "Get a diagnosis and practical care plan.", href: "/skin" },
-  { title: "Laser hair reduction", detail: "Discuss suitability, preparation, and aftercare.", href: "/laser-hair-reduction" },
-  { title: "Skin rejuvenation", detail: "Explore options with a dermatologist after assessment.", href: "/laser-aesthetics" },
-  { title: "Other skin concerns", detail: "Start with an examination and a clear next step.", href: "/skin" },
-];
-
-const whyItems = [
-  {
-    title: "US FDA-approved technology",
-    body: "Technology used in care is US FDA-approved, with suitability discussed during your consultation.",
-  },
-  {
-    title: "Personalised care",
-    body: "Care plans reflect your concern, skin or hair history, and individual needs.",
-  },
-  {
-    title: "Precise information and clear explanations",
-    body: "Understand the concern, the assessment, and the next steps in plain language.",
-  },
+  { title: "Acne & acne scars", detail: "Understand active acne and discuss suitable next steps for marks or scars.", href: "/treatments/acne-treatment", Icon: ScanFaceIcon, featured: true },
+  { title: "Pigmentation & melasma", detail: "Assessment for uneven tone, melasma, and dark spots.", href: "/pigmentation-melasma", Icon: SunIcon, featured: true },
+  { title: "Hair fall", detail: "Review the pattern, scalp, history, and treatment options.", href: "/hair-loss", Icon: WavesIcon, featured: true },
+  { title: "Dandruff & scalp problems", detail: "Discuss itching, scaling, or other scalp concerns.", href: "/hair", Icon: SnowflakeIcon },
+  { title: "Vitiligo", detail: "Assessment and individual follow-up planning.", href: "/treatments/vitiligo-treatment", Icon: ContrastIcon },
+  { title: "Skin infections", detail: "Get a diagnosis and practical care plan.", href: "/skin", Icon: ShieldPlusIcon },
+  { title: "Laser hair reduction", detail: "Discuss suitability, preparation, and aftercare.", href: "/laser-hair-reduction", Icon: ZapIcon },
+  { title: "Skin rejuvenation", detail: "Explore options with a dermatologist after assessment.", href: "/laser-aesthetics", Icon: SparklesIcon },
+  { title: "Other skin concerns", detail: "Start with an examination and a clear next step.", href: "/skin", Icon: StethoscopeIcon },
 ];
 
 const consultationSteps = [
@@ -89,35 +85,15 @@ const consultationSteps = [
 const homepageFaqs = [
   {
     question: "Do I need an appointment before visiting?",
-    answer: "You can book a 20-minute consultation online and receive an email confirmation. You can also call or WhatsApp the clinic if you need help planning your visit.",
+    answer: "An appointment helps you avoid waiting. Call or WhatsApp the clinic to choose a time for your consultation.",
   },
   {
-    question: "What are the clinic timings?",
-    answer: "Monday to Saturday, 11 AM–2 PM and 5 PM–8 PM. The clinic is closed on Sunday.",
+    question: "Which concerns does the clinic treat?",
+    answer: "Acne and acne scars, pigmentation and melasma, hair fall and scalp problems, vitiligo, skin infections, laser hair reduction, and cosmetic concerns. Dr. Hiteshree Shah assesses each concern before recommending care.",
   },
   {
-    question: "Where is Shreemay Skin Clinic?",
-    answer: "The clinic is at Shop No. 8, 1st Floor, Ananya Complex, Akshar Chowk, O.P. Road, Vadodara.",
-  },
-  {
-    question: "Does the clinic treat hair fall?",
-    answer: "Yes. Hair fall, thinning, dandruff, and scalp concerns can be discussed with Dr. Hiteshree Shah.",
-  },
-  {
-    question: "Can I book a consultation for acne?",
-    answer: "Yes. The doctor can assess active acne and discuss suitable care after reviewing your skin and history.",
-  },
-  {
-    question: "Are laser treatments available?",
-    answer: "Laser hair reduction and other cosmetic or laser options can be discussed during a consultation.",
-  },
-  {
-    question: "Does the clinic provide vitiligo care?",
-    answer: "Yes. The clinic offers assessment, treatment planning, and follow-up conversations for vitiligo.",
-  },
-  {
-    question: "Can I consult for pigmentation or melasma?",
-    answer: "Yes. Bring details of your routine and previous products or treatments so the doctor can assess the concern.",
+    question: "What should I bring to my first visit?",
+    answer: "Bring details of your skin or hair routine and any previous products or treatments, so the doctor can assess the concern.",
   },
   {
     question: "How long does a dermatology consultation take?",
@@ -145,11 +121,7 @@ export default function Home() {
               Consult Dr. Hiteshree Shah, MBBS, MD (Dermatology), for personalised care for skin, hair, vitiligo, and aesthetic concerns.
             </p>
             <div className="welcome-actions">
-              <a href={bookingUrl} className="welcome-book">
-                <CalendarDaysIcon aria-hidden="true" />
-                Book an appointment
-                <ArrowUpRightIcon aria-hidden="true" />
-              </a>
+              <BookingButton className="welcome-book" />
               <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className="welcome-call">
                 <MessageCircleIcon aria-hidden="true" />
                 WhatsApp us
@@ -164,10 +136,9 @@ export default function Home() {
 
           <figure className="welcome-portrait">
             <Image
-              src="/images/doctor-welcome.png"
+              src={doctorWelcomeImage}
               alt="Dr. Hiteshree Shah, dermatologist at Shreemay Skin Clinic"
-              width={1000}
-              height={936}
+              placeholder="blur"
               priority
               sizes="(max-width: 767px) 100vw, 40vw"
             />
@@ -208,28 +179,6 @@ export default function Home() {
           </div>
         </nav>
 
-        <section className="welcome-conversation page-container" aria-labelledby="conversation-heading">
-          <div>
-            <h2 id="conversation-heading">Care that starts with you</h2>
-            <p>
-              Every skin and hair concern is different. Dr. Hiteshree Shah begins with a detailed consultation and examination before recommending a plan suited to your needs.
-            </p>
-            <p>
-              From everyday skin concerns to hair loss, vitiligo, and aesthetic care, the focus is on appropriate options, realistic expectations, and proper follow-up.
-            </p>
-            <Link className="text-link" href="/about-dr-hiteshree-shah">
-              Meet Dr. Hiteshree Shah<ArrowUpRightIcon aria-hidden="true" />
-            </Link>
-          </div>
-          <Image
-            src="/images/reception-welcome.png"
-            alt="Reception at Shreemay Skin Clinic"
-            width={1024}
-            height={768}
-            sizes="(max-width: 767px) 100vw, 40vw"
-          />
-        </section>
-
         <section className="popular-concerns" aria-labelledby="popular-concerns-heading">
           <div className="page-container">
             <div className="popular-heading">
@@ -239,8 +188,9 @@ export default function Home() {
               <p>Choose a concern to see what to discuss with the dermatologist and how a consultation can help clarify next steps.</p>
             </div>
             <div className="concern-grid">
-              {concernCards.map((concern) => (
-                <Link className="concern-link" href={concern.href} key={concern.title}>
+              {concernCards.map(({ Icon, ...concern }) => (
+                <Link className={"concern-link" + (concern.featured ? " concern-link-featured" : "")} href={concern.href} key={concern.title}>
+                  <span className="concern-icon"><Icon aria-hidden="true" /></span>
                   <strong>{concern.title}</strong>
                   <span>{concern.detail}</span>
                   <ArrowUpRightIcon aria-hidden="true" />
@@ -254,10 +204,10 @@ export default function Home() {
           <div className="page-container doctor-grid">
             <MotionReveal className="doctor-portrait" preset="clip" amount={0.12}>
               <Image
-                src="/images/dr-hiteshree-iadvl-optimized.jpg"
+                src={doctorProfilePhoto.src}
                 alt="Dr. Hiteshree Shah, dermatologist at Shreemay Skin Clinic"
-                width={1000}
-                height={936}
+                width={doctorProfilePhoto.width}
+                height={doctorProfilePhoto.height}
                 sizes="(max-width: 900px) 100vw, 44vw"
               />
               <div className="doctor-portrait-caption">
@@ -318,22 +268,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="why-section" aria-labelledby="why-heading">
-          <div className="page-container why-layout">
-            <div className="why-intro">
-              <h2 id="why-heading">Why choose us?</h2>
-              <p>Doctor-led care with approved technology, a plan shaped around you, and a clear explanation of your concern.</p>
-            </div>
-            <div className="why-list">
-              {whyItems.map((item) => (
-                <article className="why-item" key={item.title}>
-                  <div><h3>{item.title}</h3><p>{item.body}</p></div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <BeforeAfterGallery
           caseStudies={caseStudies}
           heading="Before &amp; follow-up"
@@ -344,7 +278,7 @@ export default function Home() {
           <div className="page-container process-layout">
             <div className="process-intro">
               <h2 id="process-heading">Your first visit</h2>
-              <p>Know what happens next before you book a consultation.</p>
+              <p>Every skin and hair concern is different. Dr. Hiteshree Shah begins with a detailed consultation and examination before recommending a plan suited to your needs.</p>
             </div>
             <div className="process-list">
               {consultationSteps.map(([title, description], index) => (
@@ -424,8 +358,6 @@ export default function Home() {
           </div>
         </section>
 
-
-
         <InstagramReels />
 
         <section id="visit" className="visit-section final-cta" aria-labelledby="visit-heading">
@@ -435,6 +367,7 @@ export default function Home() {
               <p>Contact Dr. Hiteshree Shah’s clinic in Vadodara by phone or WhatsApp.</p>
 
               <div className="visit-actions">
+                {bookingAction.live ? <BookingButton className={buttonVariants({ size: "lg" })} /> : null}
                 <a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })}>
                   <MessageCircleIcon data-icon="inline-start" />WhatsApp us
                 </a>

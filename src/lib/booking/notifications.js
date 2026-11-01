@@ -1,12 +1,12 @@
 import "server-only";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
 import { formatClinicDate, formatClinicTime } from "@/lib/booking/schedule";
 
 export function isBookingEmailConfigured() {
   return Boolean(
-    process.env.RESEND_API_KEY
-    && process.env.BOOKING_FROM_EMAIL
+    process.env.SMTP_USER
+    && process.env.SMTP_PASS
     && process.env.BOOKING_ALERT_EMAIL
   );
 }
@@ -21,15 +21,20 @@ function escapeHtml(value) {
   })[character]);
 }
 
-function createResendClient() {
-  return new Resend(process.env.RESEND_API_KEY);
+let transporter;
+
+function getTransporter() {
+  transporter ??= nodemailer.createTransport({
+    service: "gmail",
+    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+  });
+  return transporter;
 }
 
 export async function sendClinicBookingAlert(booking, date, time) {
   const recipient = process.env.BOOKING_ALERT_EMAIL;
   if (!recipient) return { sent: false, skipped: true };
 
-  const resend = createResendClient();
   const dateLabel = formatClinicDate(date);
   const timeLabel = formatClinicTime(time);
   const patientName = escapeHtml(booking.patient_name);
@@ -38,9 +43,9 @@ export async function sendClinicBookingAlert(booking, date, time) {
   const origin = process.env.NEXT_PUBLIC_SITE_URL
     || (process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : "http://localhost:3000");
   const dashboardUrl = new URL("/admin", origin).toString();
-  const { data, error } = await resend.emails.send({
-    from: process.env.BOOKING_FROM_EMAIL,
-    to: [recipient],
+  const info = await getTransporter().sendMail({
+    from: { name: "Shreemay Skin Clinic", address: process.env.SMTP_USER },
+    to: recipient,
     subject: "New consultation booking",
     text: [
       "A new consultation was booked.",
@@ -56,5 +61,5 @@ export async function sendClinicBookingAlert(booking, date, time) {
       + "<p><a href=\"" + dashboardUrl + "\">Open the clinic dashboard</a></p>",
   });
 
-  return { sent: !error, error, id: data?.id };
+  return { sent: info.accepted.length > 0, id: info.messageId };
 }

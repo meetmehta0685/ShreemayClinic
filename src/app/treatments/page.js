@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRightIcon } from "lucide-react";
 
 import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/SiteHeader";
+import SiteHeader from "@/components/site-header";
 import { phoneHref } from "@/data/clinic";
 import { serviceGroups, treatments } from "@/data/treatments";
 

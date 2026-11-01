@@ -17,7 +17,7 @@ export default function BookingForm({ clinicName }) {
   const [selectedDate, setSelectedDate] = useState(dates[0] ?? "");
   const [selectedTime, setSelectedTime] = useState("");
   const [slots, setSlots] = useState([]);
-  const [loadingSlots, setLoadingSlots] = useState(true);
+  const [loadingSlots, setLoadingSlots] = useState(Boolean(dates[0]));
   const [bookingError, setBookingError] = useState("");
   const [previewMode, setPreviewMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -28,18 +28,9 @@ export default function BookingForm({ clinicName }) {
   }, [previewMode, selectedDate, slots]);
 
   useEffect(() => {
-    if (!selectedDate) {
-      setSlots([]);
-      setLoadingSlots(false);
-      return undefined;
-    }
+    if (!selectedDate) return undefined;
 
     const controller = new AbortController();
-    setLoadingSlots(true);
-    setSelectedTime("");
-    setBookingError("");
-    setPreviewMode(false);
-
     fetch(`/api/booking/availability?date=${encodeURIComponent(selectedDate)}`, {
       cache: "no-store",
       signal: controller.signal,
@@ -64,6 +55,15 @@ export default function BookingForm({ clinicName }) {
 
     return () => controller.abort();
   }, [selectedDate]);
+
+  function changeDate(date) {
+    setSelectedDate(date);
+    setSelectedTime("");
+    setSlots([]);
+    setBookingError("");
+    setPreviewMode(false);
+    setLoadingSlots(true);
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -166,7 +166,7 @@ export default function BookingForm({ clinicName }) {
             id="appointment-date"
             name="date"
             value={selectedDate}
-            onChange={(event) => setSelectedDate(event.target.value)}
+            onChange={(event) => changeDate(event.target.value)}
             required
           >
             {dates.map((date) => (

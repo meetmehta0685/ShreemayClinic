@@ -14,32 +14,37 @@ const filters = [
 
 export default function AdminDashboard() {
   const [bookings, setBookings] = useState([]);
+  const [loadedAt, setLoadedAt] = useState(0);
   const [activeFilter, setActiveFilter] = useState("upcoming");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [cancellingId, setCancellingId] = useState("");
 
-  const loadBookings = useCallback(async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await fetch("/api/admin/bookings", { cache: "no-store" });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "We could not load appointments.");
-      setBookings(result.bookings ?? []);
-    } catch (loadError) {
+  const loadBookings = useCallback(() => requestBookings().then(
+    (result) => {
+      setBookings(result);
+      setLoadedAt(Date.now());
+      setError("");
+      setLoading(false);
+    },
+    (loadError) => {
       setError(loadError.message);
-    } finally {
       setLoading(false);
     }
-  }, []);
+  ), []);
 
   useEffect(() => {
     loadBookings();
   }, [loadBookings]);
 
+  function refreshBookings() {
+    setLoading(true);
+    setError("");
+    loadBookings();
+  }
+
   const visibleBookings = useMemo(() => {
-    const now = Date.now();
+    const now = loadedAt;
     return bookings
       .filter((booking) => {
         if (activeFilter === "cancelled") return booking.status === "cancelled";
@@ -49,7 +54,7 @@ export default function AdminDashboard() {
           : new Date(booking.starts_at).getTime() < now;
       })
       .sort((first, second) => new Date(first.starts_at) - new Date(second.starts_at));
-  }, [activeFilter, bookings]);
+  }, [activeFilter, bookings, loadedAt]);
 
   async function cancelBooking(booking) {
     const appointmentLabel = formatClinicDateTime(booking.starts_at);
@@ -71,7 +76,7 @@ export default function AdminDashboard() {
     }
   }
 
-  const upcomingCount = bookings.filter((booking) => booking.status === "confirmed" && new Date(booking.starts_at).getTime() >= Date.now()).length;
+  const upcomingCount = bookings.filter((booking) => booking.status === "confirmed" && new Date(booking.starts_at).getTime() >= loadedAt).length;
 
   return (
     <section className="admin-content" aria-labelledby="admin-title">
@@ -81,7 +86,7 @@ export default function AdminDashboard() {
           <h1 id="admin-title">Consultations</h1>
           <p>Patient names, contact numbers, and confirmed appointment times.</p>
         </div>
-        <button className="admin-refresh-button" type="button" onClick={loadBookings} disabled={loading}>
+        <button className="admin-refresh-button" type="button" onClick={refreshBookings} disabled={loading}>
           <RefreshCwIcon aria-hidden="true" /> Refresh
         </button>
       </div>
@@ -158,4 +163,11 @@ export default function AdminDashboard() {
       )}
     </section>
   );
+}
+
+async function requestBookings() {
+  const response = await fetch("/api/admin/bookings", { cache: "no-store" });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.error || "We could not load appointments.");
+  return result.bookings ?? [];
 }

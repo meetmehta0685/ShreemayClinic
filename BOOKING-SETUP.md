@@ -1,6 +1,6 @@
 # Clinic booking setup
 
-The site includes online consultation booking at `/book` and a private staff dashboard at `/admin`. The database and sign-in provider are Neon; email is sent through Resend. The API stays unavailable until the required environment variables are set.
+The site includes online consultation booking at `/book` and a private staff dashboard at `/admin`. The database and sign-in provider are Neon; email is sent through a Gmail account using Nodemailer. The API stays unavailable until the required environment variables are set.
 
 ## Neon database and staff access
 
@@ -20,17 +20,17 @@ Run one statement per staff account. Each must insert or update exactly one row;
 
 ## Email
 
-The booking API is already wired to send a Resend alert after it reserves an appointment. Each alert goes to the doctor's approved inbox, `hiteeshah30@gmail.com`, and contains the patient's name, contact number, and selected appointment date and time. The dashboard records whether the alert was sent.
+The booking API sends an email alert through Gmail SMTP (Nodemailer) after it reserves an appointment. Each alert goes to the doctor's approved inbox, `hiteeshah30@gmail.com`, and contains the patient's name, contact number, and selected appointment date and time. The dashboard records whether the alert was sent. No domain is needed.
 
-The local clinic inbox is configured. `RESEND_API_KEY` and `BOOKING_FROM_EMAIL` are intentionally blank until the clinic has a domain. The API key previously pasted into chat should be revoked and must not be reused. After the clinic controls a domain:
+To turn on online booking:
 
-1. Add the domain in Resend and publish the DNS records Resend provides. Wait for sending verification to complete.
-2. Create a new API key with **Sending access**, restricted to that verified domain when available.
-3. Set `BOOKING_FROM_EMAIL` to a sender on that domain, for example `Shreemay Skin Clinic <appointments@clinic-domain.com>`.
-4. Add the key and sender to `.env.local` and the hosting provider's environment variables, then restart the dev server or redeploy.
+1. Choose the Gmail account that will send alerts, for example a dedicated clinic account.
+2. Turn on 2-Step Verification for that account, then create an App Password at https://myaccount.google.com/apppasswords.
+3. Set `SMTP_USER` to the Gmail address and `SMTP_PASS` to the 16-character App Password (spaces optional).
+4. Add both to `.env.local` and the hosting provider's environment variables, then restart the dev server or redeploy.
 5. Make one test booking and confirm the alert reaches the clinic inbox before opening online booking to patients.
 
-Until then, keep `BOOKING_FROM_EMAIL` blank. Resend's `resend.dev` test sender is limited to the email associated with the Resend account, so it cannot deliver the clinic alert to the doctor's inbox. With the sender unset, the booking API stays disabled instead of confirming appointments the clinic would not be notified about. Never put the Resend key in a `NEXT_PUBLIC_` variable or paste it into chat.
+Until both are set, every "Book" button on the site reads "Call to book" and dials the clinic; after they are set and the site is rebuilt or redeployed, the buttons open `/book` automatically. Until both are set, the booking API stays disabled instead of confirming appointments the clinic would not be notified about. Gmail allows roughly 500 messages a day from a personal account, far above the clinic's booking volume. Never put the App Password in a `NEXT_PUBLIC_` variable or paste it into chat.
 
 ## Environment variables
 
@@ -41,12 +41,12 @@ Copy [`.env.example`](.env.example) to `.env.local` for local development. Add t
 | `DATABASE_URL` | Neon pooled connection string for the clinic's `neondb` database |
 | `NEON_AUTH_BASE_URL` | Auth URL shown in the Neon project's Better Auth settings |
 | `NEON_AUTH_COOKIE_SECRET` | Random secret of at least 32 characters |
-| `RESEND_API_KEY` | Resend API key; server only |
-| `BOOKING_FROM_EMAIL` | Sender name and address on the verified domain |
+| `SMTP_USER` | Gmail address that sends booking alerts |
+| `SMTP_PASS` | Gmail App Password for that account; server only |
 | `BOOKING_ALERT_EMAIL` | Doctor or clinic inbox for patient name, contact number, and appointment details |
 | `NEXT_PUBLIC_SITE_URL` | Production website origin, such as `https://clinic.example` |
 
-Generate the auth cookie secret with `openssl rand -base64 32`. Never prefix the database URL, cookie secret, or Resend key with `NEXT_PUBLIC_`. Keep `.env.local` out of Git. Restart the development server or redeploy after setting the variables.
+Generate the auth cookie secret with `openssl rand -base64 32`. Never prefix the database URL, cookie secret, or Gmail App Password with `NEXT_PUBLIC_`. Keep `.env.local` out of Git. Restart the development server or redeploy after setting the variables.
 
 ## Staff use
 
@@ -55,7 +55,7 @@ Doctor and reception staff sign in at `/admin` with a one-time code sent to thei
 ## Booking rules
 
 - Consultation only, 20 minutes per slot.
-- Monday–Saturday, 10 AM–2 PM and 5 PM–8 PM; Sunday closed.
+- Monday–Saturday, 11 AM–2 PM and 5 PM–8 PM; Sunday closed.
 - Slots are available up to 30 days ahead and are automatically confirmed after the database reserves the time.
 - The schedule is defined in [`src/lib/booking/schedule.js`](src/lib/booking/schedule.js). Clinic closures and one-off schedule changes are not currently configurable in the dashboard.
 - Existing Appointy bookings are not imported. Retain or transfer them separately with someone who can access the Appointy account.

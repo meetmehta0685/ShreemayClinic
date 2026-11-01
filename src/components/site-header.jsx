@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
-import { MenuIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
+import { CalendarDaysIcon, MenuIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
 
+import BookingButton from "@/components/booking-button";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -15,7 +16,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { whatsAppHref } from "@/data/clinic";
+import { bookingAction, whatsAppHref } from "@/data/clinic";
 
 const navigation = [
   { label: "Home", href: "#top", route: "/" },
@@ -50,34 +51,19 @@ export default function SiteHeader({ phoneHref }) {
       return undefined;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSection = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-
-        if (visibleSection) {
-          setActiveSection("#" + visibleSection.target.id);
-        }
-      },
-      { rootMargin: "-30% 0px -56% 0px", threshold: [0, 0.12, 0.4] }
-    );
-
+    // Highlight the lowest section on the page whose top has scrolled past the marker.
     const updateActiveSection = () => {
       const marker = window.innerHeight * 0.36;
-      const currentSection = sections.reduce((current, section) => {
-        return section.getBoundingClientRect().top <= marker ? section : current;
-      }, null);
+      const passed = sections.filter((section) => section.getBoundingClientRect().top <= marker);
+      const current = passed.sort((a, b) => b.getBoundingClientRect().top - a.getBoundingClientRect().top)[0];
 
-      setActiveSection(currentSection ? "#" + currentSection.id : null);
+      setActiveSection(current ? "#" + current.id : null);
     };
 
-    sections.forEach((section) => observer.observe(section));
     window.addEventListener("scroll", updateActiveSection, { passive: true });
     const frame = window.requestAnimationFrame(updateActiveSection);
 
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", updateActiveSection);
       window.cancelAnimationFrame(frame);
     };
@@ -118,6 +104,7 @@ export default function SiteHeader({ phoneHref }) {
               <MessageCircleIcon data-icon="inline-start" />
               WhatsApp
             </a>
+            <BookingButton className={buttonVariants({ size: "sm" }) + " header-book"} />
             <Sheet>
               <SheetTrigger
                 render={
@@ -143,18 +130,27 @@ export default function SiteHeader({ phoneHref }) {
                 <div className="site-sheet-actions">
                   <SheetClose
                     nativeButton={false}
+                    render={<a href={bookingAction.href} className={buttonVariants({ size: "lg" })} />}
+                  >
+                    {bookingAction.live ? <CalendarDaysIcon data-icon="inline-start" /> : <PhoneIcon data-icon="inline-start" />}
+                    {bookingAction.label}
+                  </SheetClose>
+                  <SheetClose
+                    nativeButton={false}
                     render={<a href={whatsAppHref} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary", size: "lg" })} />}
                   >
                     <MessageCircleIcon data-icon="inline-start" />
                     WhatsApp us
                   </SheetClose>
-                  <SheetClose
-                    nativeButton={false}
-                    render={<a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })} />}
-                  >
-                    <PhoneIcon data-icon="inline-start" />
-                    Call the clinic
-                  </SheetClose>
+                  {bookingAction.live ? (
+                    <SheetClose
+                      nativeButton={false}
+                      render={<a href={phoneHref} className={buttonVariants({ variant: "outline", size: "lg" })} />}
+                    >
+                      <PhoneIcon data-icon="inline-start" />
+                      Call the clinic
+                    </SheetClose>
+                  ) : null}
                 </div>
               </SheetContent>
             </Sheet>

@@ -55,7 +55,7 @@ export default async function AdminPage() {
           <p className="booking-kicker">Clinic team</p>
           <h1>This account does not have dashboard access</h1>
           <p>Ask the clinic administrator to add your account, then sign in again.</p>
-          <AdminSignOutLink />
+          <AdminSignOut />
         </div>
       </main>
     );
@@ -70,14 +70,10 @@ export default async function AdminPage() {
         </Link>
         <div className="admin-header-actions">
           <span>Signed in as {staff.display_name}</span>
-          <AdminSignOutLink button />
+          <AdminSignOut button />
         </div>
       </header>
       <AdminDashboard />
     </main>
   );
-}
-
-function AdminSignOutLink({ button = false }) {
-  return <AdminSignOut button={button} />;
 }

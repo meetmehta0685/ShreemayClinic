@@ -5,7 +5,7 @@ import { ArrowLeftIcon, ArrowUpRightIcon, PhoneIcon } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import MotionReveal from "@/components/motion-reveal";
 import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/SiteHeader";
+import SiteHeader from "@/components/site-header";
 import {
   clinicName,
   phoneDisplay,

@@ -11,7 +11,8 @@ import {
 
 import { buttonVariants } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import BeforeAfterGallery from "@/components/BeforeAfterGallery";
+import BookingButton from "@/components/booking-button";
+import BeforeAfterGallery from "@/components/before-after-gallery";
 import {
   Card,
   CardContent,
@@ -22,7 +23,7 @@ import {
 } from "@/components/ui/card";
 import MotionReveal from "@/components/motion-reveal";
 import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/SiteHeader";
+import SiteHeader from "@/components/site-header";
 import {
   clinicAddress,
   clinicName,
@@ -84,11 +85,12 @@ export default async function TreatmentPage({ params }) {
               <h1 id="treatment-heading">{treatment.title}</h1>
               <p className="treatment-lede">{treatment.description}</p>
               <div className="treatment-actions">
+                <BookingButton className={buttonVariants({ variant: "secondary", size: "lg" })} />
                 <a
                   href={whatsAppHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={buttonVariants({ variant: "secondary", size: "lg" })}
+                  className={buttonVariants({ variant: "outline", size: "lg" }) + " treatment-whatsapp"}
                 >
                   <MessageCircleIcon data-icon="inline-start" />
                   Ask on WhatsApp

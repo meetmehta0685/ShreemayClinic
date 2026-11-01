@@ -20,4 +20,4 @@ This is used for Open Graph images, `robots.txt`, and `sitemap.xml`.
 
 ## Appointment booking
 
-The site-owned booking flow is at `/book`; clinic staff use `/admin`. See [BOOKING-SETUP.md](BOOKING-SETUP.md) for Neon, email, staff access, and deployment configuration. The live booking API remains unavailable until the clinic configures its email service credentials.
+The site-owned booking flow is at `/book`; clinic staff use `/admin`. See [BOOKING-SETUP.md](BOOKING-SETUP.md) for Neon, email, staff access, and deployment configuration. The live booking API remains unavailable until the Gmail sender (`SMTP_USER`, `SMTP_PASS`) is configured.
