@@ -5,14 +5,7 @@ import { ArrowUpRightIcon } from "lucide-react";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { phoneHref } from "@/data/clinic";
-import { serviceGroups, treatments } from "@/data/treatments";
-
-const serviceGroupPaths = {
-  skin: "/skin",
-  hair: "/hair",
-  "cosmetic-laser": "/laser-aesthetics",
-  "dermatosurgery-vitiligo": "/dermatosurgery",
-};
+import { serviceGroupPaths, serviceGroups, treatments } from "@/data/treatments";
 
 export const metadata = {
   title: "Dermatology Treatments in Vadodara | Shreemay Skin Clinic",
@@ -41,7 +34,7 @@ export default function TreatmentsPage() {
             </div>
             <div className="directory-cards">
               {serviceGroups.map((group) => (
-                <Link className="directory-card" href={serviceGroupPaths[group.slug] || `/care/${group.slug}`} key={group.slug}>
+                <Link className="directory-card" href={serviceGroupPaths[group.slug]} key={group.slug}>
                   <Image src={group.image} alt={group.imageAlt} width={720} height={440} sizes="(max-width: 767px) 100vw, (max-width: 1100px) 50vw, 25vw" />
                         <h3>{group.title}</h3>
                   <p>{group.description}</p>

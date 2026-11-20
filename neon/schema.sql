@@ -18,10 +18,6 @@ create table if not exists public.consultation_bookings (
     check (ends_at = starts_at + interval '20 minutes')
 );
 
-alter table public.consultation_bookings
-  add column if not exists clinic_alert_email_status text not null default 'pending'
-  check (clinic_alert_email_status in ('pending', 'sent', 'failed'));
-
 create unique index if not exists consultation_bookings_active_slot_idx
   on public.consultation_bookings (starts_at)
   where status = 'confirmed';

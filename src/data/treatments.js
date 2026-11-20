@@ -914,3 +914,11 @@ export function getTreatment(slug) {
 export function getServiceGroup(slug) {
   return serviceGroups.find((group) => group.slug === slug);
 }
+
+// Each care area is served at a short top-level path such as /skin.
+export const serviceGroupPaths = {
+  skin: "/skin",
+  hair: "/hair",
+  "cosmetic-laser": "/laser-aesthetics",
+  "dermatosurgery-vitiligo": "/dermatosurgery",
+};

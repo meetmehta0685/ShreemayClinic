@@ -21,7 +21,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import MotionReveal from "@/components/motion-reveal";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import {
@@ -77,7 +76,7 @@ export default async function TreatmentPage({ params }) {
       <main id="top" className="treatment-page" tabIndex="-1">
         <section className="treatment-hero" aria-labelledby="treatment-heading">
           <div className="page-container treatment-hero-grid">
-            <MotionReveal className="treatment-copy" preset="rise">
+            <div className="treatment-copy">
               <Link href="/treatments" className={buttonVariants({ variant: "ghost", size: "sm" })}>
                 <ArrowLeftIcon data-icon="inline-start" />
                 All treatments
@@ -100,9 +99,9 @@ export default async function TreatmentPage({ params }) {
                 <ShieldCheckIcon aria-hidden="true" />
                 <span>Suitability and next steps are discussed during consultation.</span>
               </div>
-            </MotionReveal>
+            </div>
 
-            <MotionReveal className="treatment-visual-motion" preset="clip" delay={0.08} amount={0.12}>
+            <div className="treatment-visual-motion">
               <Card className="treatment-visual-card">
               <CardContent className="treatment-visual-media">
                 <Image
@@ -121,13 +120,13 @@ export default async function TreatmentPage({ params }) {
                 <span>{doctorName} · MBBS, MD (Dermatology)</span>
               </CardFooter>
               </Card>
-            </MotionReveal>
+            </div>
           </div>
         </section>
 
         <section className="treatment-detail-section" aria-labelledby="detail-heading">
           <div className="page-container treatment-detail-grid">
-            <MotionReveal className="treatment-detail-copy" amount={0.16}>
+            <div className="treatment-detail-copy">
               <h2 id="detail-heading">Your consultation</h2>
               <p>{treatment.overview}</p>
               <div className="detail-proof-line">
@@ -138,9 +137,9 @@ export default async function TreatmentPage({ params }) {
                 <PhoneIcon data-icon="inline-start" />
                 Call {phoneDisplay}
               </a>
-            </MotionReveal>
+            </div>
 
-            <MotionReveal className="treatment-highlights-motion" preset="clip" delay={0.08} amount={0.16}>
+            <div className="treatment-highlights-motion">
               <Card className="treatment-highlights-card">
               <CardHeader>
                 <CardTitle>What to discuss</CardTitle>
@@ -159,7 +158,7 @@ export default async function TreatmentPage({ params }) {
                 </Accordion>
               </CardContent>
               </Card>
-            </MotionReveal>
+            </div>
           </div>
         </section>
 
@@ -172,7 +171,7 @@ export default async function TreatmentPage({ params }) {
 
         <section className="treatment-journey-section" aria-labelledby="journey-heading">
           <div className="page-container treatment-journey-grid">
-            <MotionReveal className="treatment-journey-copy" amount={0.16}>
+            <div className="treatment-journey-copy">
               <h2 id="journey-heading">Your care plan</h2>
               <p>
                 The right plan depends on your symptoms, history, examination, and goals. A consultation helps you understand the options before deciding what to do.
@@ -180,7 +179,7 @@ export default async function TreatmentPage({ params }) {
               <p className="treatment-journey-note">
                 A diagnosis and personalised plan can only be confirmed after an in-person clinical assessment.
               </p>
-            </MotionReveal>
+            </div>
 
             <ol className="treatment-journey-list">
               <li className="treatment-journey-step">
@@ -210,14 +209,14 @@ export default async function TreatmentPage({ params }) {
 
         <section className="treatment-faq-section" aria-labelledby="faq-heading">
           <div className="page-container treatment-faq-grid">
-            <MotionReveal className="treatment-faq-intro" amount={0.16}>
+            <div className="treatment-faq-intro">
               <h2 id="faq-heading">Before your visit</h2>
               <p>
                 Use these answers as a starting point. Your doctor will tailor the advice to your examination and history.
               </p>
-            </MotionReveal>
+            </div>
 
-            <MotionReveal className="treatment-faq-motion" preset="clip" delay={0.08} amount={0.16}>
+            <div className="treatment-faq-motion">
               <Card className="treatment-faq-card">
                 <CardContent>
                   <Accordion className="treatment-accordion">
@@ -230,7 +229,7 @@ export default async function TreatmentPage({ params }) {
                   </Accordion>
                 </CardContent>
               </Card>
-            </MotionReveal>
+            </div>
           </div>
         </section>
 

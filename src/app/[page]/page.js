@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { ArrowLeftIcon, ArrowUpRightIcon, MapPinIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -17,28 +17,17 @@ import {
   phoneHref,
   whatsAppHref,
 } from "@/data/clinic";
-import { getServiceGroup, treatments } from "@/data/treatments";
+import { getServiceGroup, serviceGroupPaths, treatments } from "@/data/treatments";
 
-const categoryRoutes = {
-  skin: "skin",
-  hair: "hair",
-  "laser-aesthetics": "cosmetic-laser",
-  dermatosurgery: "dermatosurgery-vitiligo",
-};
-
-const aliases = {
-  "acne-treatment": "/treatments/acne-treatment",
-  "pigmentation-melasma": "/treatments/pigmentation-melasma",
-  "hair-loss": "/treatments/hair-fall-treatment",
-  "laser-hair-reduction": "/treatments/laser-hair-removal",
-};
+const categoryRoutes = Object.fromEntries(
+  Object.entries(serviceGroupPaths).map(([slug, path]) => [path.slice(1), slug])
+);
 
 const staticPages = ["about-dr-hiteshree-shah", "clinic", "contact"];
 
 export function generateStaticParams() {
   return [
     ...Object.keys(categoryRoutes),
-    ...Object.keys(aliases),
     ...staticPages,
   ].map((page) => ({ page }));
 }
@@ -241,7 +230,6 @@ function ContactPage() {
 
 export default async function RootContentPage({ params }) {
   const { page } = await params;
-  if (aliases[page]) redirect(aliases[page]);
 
   const groupSlug = categoryRoutes[page];
   const group = groupSlug ? getServiceGroup(groupSlug) : null;

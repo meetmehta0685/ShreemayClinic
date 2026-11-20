@@ -4,7 +4,7 @@ The site includes online consultation booking at `/book` and a private staff das
 
 ## Neon database and staff access
 
-The clinic has a separate Neon project named `shreemay-clinic-db` under the owner's Neon account. It uses the Singapore region and the `production` branch. The clinic tables and indexes from [`neon/schema.sql`](neon/schema.sql) are applied to that branch's `neondb` database. The script can be rerun safely for setup or recovery. Existing deployments created with the earlier schema should also run [`neon/migrations/20261012_remove_patient_email.sql`](neon/migrations/20261012_remove_patient_email.sql); it stops if any appointment rows exist.
+The clinic has a separate Neon project named `shreemay-clinic-db` under the owner's Neon account. It uses the Singapore region and the `production` branch. The clinic tables and indexes from [`neon/schema.sql`](neon/schema.sql) are applied to that branch's `neondb` database. The script can be rerun safely for setup or recovery.
 
 Neon Auth is enabled and self-sign-up is disabled. Add each approved staff account from the project's Better Auth user management in Neon Console. Then add the account to the clinic allowlist in the SQL Editor, replacing the example email and display name:
 

@@ -1,0 +1,13 @@
+# Never upload secrets, private patient photos, or local tool data.
+.env*
+!.env.example
+.codex
+.agents
+.impeccable
+.firecrawl
+.claude
+backup_static
+node_modules
+.next
+*.md
+!README.md

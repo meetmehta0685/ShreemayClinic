@@ -24,7 +24,6 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import BeforeAfterGallery from "@/components/before-after-gallery";
 import BookingButton from "@/components/booking-button";
 import InstagramReels from "@/components/instagram-reels";
-import MotionReveal from "@/components/motion-reveal";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import {
@@ -202,7 +201,7 @@ export default function Home() {
 
         <section id="doctor" className="doctor-section" aria-labelledby="doctor-heading">
           <div className="page-container doctor-grid">
-            <MotionReveal className="doctor-portrait" preset="clip" amount={0.12}>
+            <div className="doctor-portrait">
               <Image
                 src={doctorProfilePhoto.src}
                 alt="Dr. Hiteshree Shah, dermatologist at Shreemay Skin Clinic"
@@ -214,9 +213,9 @@ export default function Home() {
                 <strong>Dr. Hiteshree Shah</strong>
                 <span>MBBS, MD (Dermatology)</span>
               </div>
-            </MotionReveal>
+            </div>
 
-            <MotionReveal className="doctor-copy" delay={0.08} amount={0.14}>
+            <div className="doctor-copy">
               <h2 id="doctor-heading">Meet Dr. Hiteshree Shah</h2>
               <p className="doctor-subtitle">MBBS, MD (Dermatology) · Dermatologist in Vadodara</p>
               <p className="doctor-lede">
@@ -264,7 +263,7 @@ export default function Home() {
                   View complete profile<ArrowUpRightIcon data-icon="inline-end" />
                 </Link>
               </div>
-            </MotionReveal>
+            </div>
           </div>
         </section>
 
@@ -304,10 +303,10 @@ export default function Home() {
 
           <div className="clinic-gallery">
             {clinicPhotos.map((photo, index) => (
-              <MotionReveal className={index === 0 ? "clinic-image clinic-image-wide" : "clinic-image"} preset="clip" delay={index * 0.04} amount={0.08} key={photo.src}>
+              <div className={index === 0 ? "clinic-image clinic-image-wide" : "clinic-image"} key={photo.src}>
                 <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(max-width: 767px) 100vw, 25vw" />
                 <span>{photo.label}</span>
-              </MotionReveal>
+              </div>
             ))}
           </div>
           <p className="page-container clinic-caption">Located at Ananya Complex, near Akshar Chowk, Vadodara.</p>
@@ -346,13 +345,13 @@ export default function Home() {
 
             <div className="reviews-list">
               {reviews.map((review, index) => (
-                <MotionReveal key={review.name} className="review-item" delay={index * 0.04} amount={0.14}>
+                <div key={review.name} className="review-item">
                   <blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
                   <div className="review-author">
                     <Avatar><AvatarFallback>{review.initials}</AvatarFallback></Avatar>
                     <div><strong>{review.name}</strong><span>Patient feedback</span></div>
                   </div>
-                </MotionReveal>
+                </div>
               ))}
             </div>
           </div>
@@ -384,7 +383,7 @@ export default function Home() {
               </div>
             </div>
 
-            <MotionReveal className="map-frame" preset="clip" delay={0.08} amount={0.1}>
+            <div className="map-frame">
               <iframe
                 src={mapEmbedUrl}
                 title="Google Maps location for Shreemay Skin Clinic in Vadodara"
@@ -396,7 +395,7 @@ export default function Home() {
               <a href={googleMapsHref} target="_blank" rel="noopener noreferrer" className="map-link">
                 <MapPinIcon aria-hidden="true" />Open in Google Maps<ArrowUpRightIcon aria-hidden="true" />
               </a>
-            </MotionReveal>
+            </div>
           </div>
         </section>
       </main>

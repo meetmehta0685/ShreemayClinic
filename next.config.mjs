@@ -7,10 +7,24 @@ const onlineBookingLive = Boolean(
   && process.env.BOOKING_ALERT_EMAIL
 );
 
+const redirects = {
+  "/care/skin": "/skin",
+  "/care/hair": "/hair",
+  "/care/cosmetic-laser": "/laser-aesthetics",
+  "/care/dermatosurgery-vitiligo": "/dermatosurgery",
+  "/acne-treatment": "/treatments/acne-treatment",
+  "/pigmentation-melasma": "/treatments/pigmentation-melasma",
+  "/hair-loss": "/treatments/hair-fall-treatment",
+  "/laser-hair-reduction": "/treatments/laser-hair-removal",
+};
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
     NEXT_PUBLIC_ONLINE_BOOKING: onlineBookingLive ? "on" : "",
+  },
+  async redirects() {
+    return Object.entries(redirects).map(([source, destination]) => ({ source, destination, permanent: true }));
   },
 };
 

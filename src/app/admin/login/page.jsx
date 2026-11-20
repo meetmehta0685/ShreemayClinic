@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -18,7 +19,7 @@ export default async function AdminLoginPage() {
     <main className="admin-auth-page">
       <section className="admin-auth-panel" aria-labelledby="admin-login-title">
         <Link className="admin-brand" href="/" aria-label="Shreemay Skin Clinic home">
-          <span className="admin-brand-mark" aria-hidden="true">SH</span>
+          <Image src="/images/logo.png" alt="" width={52} height={52} />
           <span>Shreemay Skin Clinic</span>
         </Link>
         <p className="booking-kicker">Clinic team</p>
