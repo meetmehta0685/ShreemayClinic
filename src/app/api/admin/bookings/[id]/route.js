@@ -27,7 +27,8 @@ export async function PATCH(_request, { params }) {
     if (!staff) {
       return NextResponse.json({ error: "This account does not have clinic dashboard access." }, { status: 403 });
     }
-  } catch {
+  } catch (error) {
+    console.error("Admin cancel failed", error);
     return NextResponse.json({ error: "We could not cancel this appointment." }, { status: 500 });
   }
 
@@ -37,7 +38,8 @@ export async function PATCH(_request, { params }) {
       "update public.consultation_bookings set status = 'cancelled' where id = $1::uuid and status = 'confirmed' returning id",
       [id]
     );
-  } catch {
+  } catch (error) {
+    console.error("Admin cancel failed", error);
     return NextResponse.json({ error: "We could not cancel this appointment." }, { status: 500 });
   }
   const booking = bookings[0];

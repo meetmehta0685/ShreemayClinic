@@ -36,7 +36,8 @@ export default async function AdminPage() {
   let staff;
   try {
     staff = await getClinicStaff(database, user.id);
-  } catch {
+  } catch (error) {
+    console.error("Staff lookup failed", error);
     return (
       <main className="admin-page">
         <div className="admin-unconfigured">

@@ -8,7 +8,8 @@ export function isNeonDatabaseConfigured() {
 }
 
 export function getNeonDatabase() {
-  const connectionString = process.env.DATABASE_URL;
+  // Tolerate a value pasted with its .env quotes, e.g. "postgresql://...".
+  const connectionString = process.env.DATABASE_URL?.trim().replace(/^(["'])(.*)\1$/, "$2");
   if (!connectionString) return null;
 
   if (!database) database = neon(connectionString);

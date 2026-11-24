@@ -30,7 +30,8 @@ export async function GET() {
         ].join(" ")
       );
     }
-  } catch {
+  } catch (error) {
+    console.error("Admin bookings query failed", error);
     return NextResponse.json({ error: "We could not load the appointment list." }, { status: 500 });
   }
 

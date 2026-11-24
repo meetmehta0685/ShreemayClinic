@@ -32,7 +32,8 @@ export async function GET(request) {
       "select starts_at from public.consultation_bookings where status = 'confirmed' and starts_at >= $1::timestamptz and starts_at < $2::timestamptz",
       [start, end]
     );
-  } catch {
+  } catch (error) {
+    console.error("Availability query failed", error);
     return NextResponse.json(
       { error: "We could not load appointment times. Please try again or call the clinic." },
       { status: 500, headers: { "Cache-Control": "no-store" } }

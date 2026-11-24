@@ -48,6 +48,7 @@ export async function POST(request) {
     );
     booking = rows[0];
   } catch (error) {
+    if (error?.code !== "23505") console.error("Booking insert failed", error);
     if (error?.code === "23505") {
       return NextResponse.json(
         { error: "That time was just booked. Choose another available appointment." },
@@ -68,7 +69,8 @@ export async function POST(request) {
   try {
     const alert = await sendClinicBookingAlert(booking, date, time);
     clinicAlertSent = alert.sent;
-  } catch {
+  } catch (error) {
+    console.error("Booking alert email failed", error);
     // An alert failure does not undo the reserved appointment.
   }
 
@@ -77,7 +79,8 @@ export async function POST(request) {
       "update public.consultation_bookings set clinic_alert_email_status = $1 where id = $2::uuid",
       [clinicAlertSent ? "sent" : "failed", booking.id]
     );
-  } catch {
+  } catch (error) {
+    console.error("Alert status update failed", error);
     // The reservation is already confirmed; an email-status update must not invite a duplicate booking.
   }
 
