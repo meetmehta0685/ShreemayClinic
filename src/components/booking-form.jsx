@@ -239,6 +239,9 @@ export default function BookingForm({ clinicName }) {
           {previewMode ? "Online booking coming soon" : submitting ? "Saving appointment…" : "Confirm consultation"}
           {!previewMode && !submitting ? <ArrowRightIcon data-icon="inline-end" aria-hidden="true" /> : null}
         </button>
+        <p className="booking-privacy">
+          Your name and number are used only to manage your appointment and are seen only by the clinic.
+        </p>
       </form>
     </section>
   );
